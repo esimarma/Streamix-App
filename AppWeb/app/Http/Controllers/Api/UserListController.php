@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUserListRequest;
 use App\Http\Requests\SearchRequest;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserListResource;
+use App\Models\User;
 use App\Models\UserList;
 
 class UserListController extends Controller
@@ -14,31 +15,41 @@ class UserListController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(SearchRequest $request)
+    public function index(Request $request)
     {
         $query = UserList::query();
-        
-        // Verifica se há um termo de pesquisa
-        if ($request->has('search') && $request->search) {
-            $search = $request->search;
-            $query->where('name', 'LIKE', "%{$search}%");
+    
+        // Filtros de pesquisa
+        if ($request->has('list_name') && $request->list_name) {
+            $listName = $request->list_name;
+            $query->where('name', 'LIKE', "%{$listName}%");
         }
-        
-        // Eager Loading da relação 'user'
+    
+        if ($request->has('user_name') && $request->user_name) {
+            $userName = $request->user_name;
+            $query->whereHas('user', function ($q) use ($userName) {
+                $q->where('name', 'LIKE', "%{$userName}%");
+            });
+        }
+    
+        // Eager loading e paginação
         $userList = $query->with('user')->paginate(10);
     
-        return view('user-lists.index', compact('userList')); // Passando $userList para a view
+        // Certifique-se de que está passando a variável correta
+        return view('user-lists.index', compact('userList')); 
     }
 
     public function getByUser($userId)
     {
-        // Busca todas as listas associadas ao utilizador pelo ID
-        $userLists = UserList::where('id_user', $userId)->get();
-    
-        // Retorna as listas como uma coleção de recursos
-        return UserListResource::collection($userLists);
-    }
+        // Obtemos o usuário (caso necessário para exibir detalhes na página)
+        $user = User::findOrFail($userId);
 
+        // Obtemos as listas associadas ao usuário
+        $userList = UserList::where('id_user', $userId)->with('user')->paginate(10);
+
+        // Retornamos a view com as listas e o usuário
+        return view('user-lists.index', compact('userList', 'user'));
+    }
     /**
      * Show the form for creating a new resource.
      */

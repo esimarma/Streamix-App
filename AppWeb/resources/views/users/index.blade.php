@@ -19,8 +19,7 @@
                     />
                     <button 
                         type="submit" 
-                        class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600 flex items-center justify-center"
-                    >
+                        class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600 flex items-center justify-center" >
                         <!-- Ícone de lupa -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.41-5.18a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -51,7 +50,7 @@
                                 <button 
                                     class="text-blue-500 hover:underline ver-listas-btn" 
                                     data-id="{{ $user->id }}">
-                                    Ver Listas
+                                    <a href="{{ route('user-lists.lists', ['id' => $user->id]) }}">Ver Listas</a>
                                 </button>
                             </td>
                                 <td class="border border-gray-300 px-4 py-2">

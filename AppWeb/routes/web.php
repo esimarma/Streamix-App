@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/userList', [UserListController::class, 'index'])->name('user-lists.index');
+Route::get('/userList/user/{id}', [UserListController::class, 'getByUser'])->name('user-lists.lists');
 
 Route::resource('user-lists', UserListController::class);
 Route::resource('list-media', ListMediaController::class);
