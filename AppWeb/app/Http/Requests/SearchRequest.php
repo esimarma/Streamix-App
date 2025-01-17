@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserListRequest extends FormRequest
+class SearchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,15 +16,11 @@ class StoreUserListRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'id_user' => 'required|integer',
-            'name' => 'required|string|max:255',
-            'list_type' => 'required|string|max:255',
-         ];
+            'search' => 'nullable|string|max:255',
+        ];
     }
 }
