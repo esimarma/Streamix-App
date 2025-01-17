@@ -21,12 +21,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/users', [UserController::class, 'indexWeb'])->name('users.indexWeb');
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/userList', [UserListController::class, 'index'])->name('user-lists.index');
+Route::get('/userList', [UserListController::class, 'indexWeb'])->name('user-lists.indexWeb');
 Route::get('/userList/user/{id}', [UserListController::class, 'getByUser'])->name('user-lists.lists');
+//Route::put('/userList/{id}', [UserListController::class, 'updateWeb'])->name('user-lists.updateWeb');
 
-Route::resource('user-lists', UserListController::class);
+
 Route::resource('list-media', ListMediaController::class);
 Route::resource('ratings', RatingController::class);
 

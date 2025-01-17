@@ -5,17 +5,17 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('users.index') }}">
+                    <a href="{{ route('users.indexWeb') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                    <x-nav-link :href="route('users.indexWeb')" :active="request()->routeIs('users.indexWeb')">
                         {{ __('Users') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('user-lists.index')" :active="request()->routeIs('user-lists.index')">
+                    <x-nav-link :href="route('user-lists.indexWeb')" :active="request()->routeIs('user-lists.indexWeb')">
                         {{ __('UserList') }}
                     </x-nav-link>
                 </div>
@@ -70,10 +70,10 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+            <x-responsive-nav-link :href="route('users.indexWeb')" :active="request()->routeIs('users.indexWeb')">
                 {{ __('Users') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('user-lists.index')" :active="request()->routeIs('user-lists.index')">
+            <x-responsive-nav-link :href="route('user-lists.indexWeb')" :active="request()->routeIs('user-lists.indexWeb')">
                 {{ __('UserList') }}
             </x-responsive-nav-link>
         </div>

@@ -15,7 +15,13 @@ class UserListController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
+    {
+       $userList = UserList::all();
+       return UserListResource::collection($userList);
+    }
+    
+    public function indexWeb(Request $request)
     {
         $query = UserList::query();
     
@@ -36,7 +42,7 @@ class UserListController extends Controller
         $userList = $query->with('user')->paginate(10);
     
         // Certifique-se de que está passando a variável correta
-        return view('user-lists.index', compact('userList')); 
+        return view('user-lists.indexWeb', compact('userList')); 
     }
 
     public function getByUser($userId)
@@ -48,7 +54,7 @@ class UserListController extends Controller
         $userList = UserList::where('id_user', $userId)->with('user')->paginate(10);
 
         // Retornamos a view com as listas e o usuário
-        return view('user-lists.index', compact('userList', 'user'));
+        return view('user-lists.indexWeb', compact('userList', 'user'));
     }
     /**
      * Show the form for creating a new resource.
@@ -91,6 +97,21 @@ class UserListController extends Controller
     {
         $userList->update($request->validated());
         return new UserListResource($userList);
+    }
+
+    public function updateWeb(StoreUserListRequest $request, $id)
+    {
+        // Valida os dados recebidos
+        $validated = $request->validated();
+
+        // Busca o registro pelo ID e atualiza os campos
+        $userList = UserList::findOrFail($id);
+        $userList->name = $validated['nome'];
+        $userList->list_type = $validated['tipo'];
+        $userList->save();
+
+        // Retorna uma resposta de sucesso
+        return response()->json(['message' => 'Lista atualizada com sucesso!'], 200);
     }
 
     /**

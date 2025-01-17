@@ -12,7 +12,13 @@ class UserController extends Controller
     /*
    * Display a listing of the resource.
    */
-  public function index(SearchRequest $request)
+  public function index()
+  {
+     $user = User::all();
+     return UserResource::collection($user);
+  }
+
+  public function indexWeb(SearchRequest $request)
   {
       $query = User::query();
   
@@ -25,7 +31,7 @@ class UserController extends Controller
   
       $users = $query->paginate(10); // Paginação opcional
   
-      return view('users.index', compact('users'));
+      return view('users.indexWeb', compact('users'));
   }
 
    /*
