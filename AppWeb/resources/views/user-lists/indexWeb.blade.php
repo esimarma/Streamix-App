@@ -59,7 +59,7 @@
                                 </td>
                                 <td class="border border-gray-300 px-4 py-2">
                                     <button class="text-blue-500 hover:underline editar">Editar</button>
-                                    <button class="text-red-500 hover:underline ml-2">Excluir</button>
+                                    <button class="text-red-500 hover:underline ml-2 excluir">Excluir</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -72,24 +72,85 @@
 
     <!-- JavaScript -->
     <script>
-        // Seleciona todos os botões de edição
         document.querySelectorAll('.editar').forEach(button => {
             button.addEventListener('click', function () {
-                // Encontra a linha mais próxima do botão
                 const row = this.closest('tr');
-                // Alterna o estado de readonly nos inputs dentro dessa linha
-                row.querySelectorAll('input').forEach(input => {
-                    input.readOnly = !input.readOnly;
-                    if (!input.readOnly) {
-                        input.style.border = "1px solid #ccc"; // Adiciona borda ao ficar editável
-                        input.style.background = "#fff"; // Adiciona fundo branco
-                    } else {
-                        input.style.border = "none"; // Remove borda ao voltar a readonly
-                        input.style.background = "transparent"; // Remove fundo
-                    }
-                });
-                // Muda o texto do botão para "Salvar" enquanto está editável
-                this.textContent = row.querySelector('input').readOnly ? "Editar" : "Salvar";
+                const isEditing = !row.querySelector('input').readOnly;
+
+                if (isEditing) {
+                    // Salvar as alterações via AJAX
+                    const id = row.querySelector('td:first-child').textContent.trim();
+                    const nome = row.querySelector('input[name="nome"]').value;
+                    const tipo = row.querySelector('input[name="tipo"]').value;
+
+                    fetch(`/user-lists/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({ nome, tipo })
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Lista atualizada com sucesso!');
+                        } else {
+                            alert('Erro ao atualizar a lista.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                        alert('Erro ao atualizar a lista.');
+                    });
+
+                    // Voltar ao modo readonly
+                    row.querySelectorAll('input').forEach(input => {
+                        input.readOnly = true;
+                        input.style.border = "none";
+                        input.style.background = "transparent";
+                    });
+                    this.textContent = "Editar";
+                } else {
+                    // Tornar os inputs editáveis
+                    row.querySelectorAll('input').forEach(input => {
+                        input.readOnly = false;
+                        input.style.border = "1px solid #ccc";
+                        input.style.background = "#fff";
+                    });
+                    this.textContent = "Salvar";
+                }
+            });
+        });
+        document.querySelectorAll('.excluir').forEach(button => {
+            button.addEventListener('click', function () {
+                const row = this.closest('tr');
+                const id = row.querySelector('td:first-child').textContent.trim();
+
+                // Exibe uma confirmação antes de excluir
+                const confirmar = confirm('Tem certeza que deseja excluir esta lista?');
+                if (confirmar) {
+                    // Envia a solicitação para excluir
+                    fetch(`/user-lists/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Remove a linha da tabela
+                            row.remove();
+                            alert('Lista excluída com sucesso!');
+                        } else {
+                            alert('Erro ao excluir a lista.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                        alert('Erro ao excluir a lista.');
+                    });
+                }
             });
         });
     </script>

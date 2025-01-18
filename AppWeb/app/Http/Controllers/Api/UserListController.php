@@ -99,17 +99,20 @@ class UserListController extends Controller
         return new UserListResource($userList);
     }
 
-    public function updateWeb(StoreUserListRequest $request, $id)
+    public function updateWeb(Request $request, $id)
     {
-        // Valida os dados recebidos
-        $validated = $request->validated();
-
+        // Validação dos dados recebidos
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'tipo' => 'required|string|max:255',
+        ]);
+    
         // Busca o registro pelo ID e atualiza os campos
         $userList = UserList::findOrFail($id);
         $userList->name = $validated['nome'];
         $userList->list_type = $validated['tipo'];
         $userList->save();
-
+    
         // Retorna uma resposta de sucesso
         return response()->json(['message' => 'Lista atualizada com sucesso!'], 200);
     }
@@ -121,5 +124,13 @@ class UserListController extends Controller
     {
         $userList->delete();
         return new UserListResource($userList);
+    }
+
+    public function destroyWeb($id)
+    {
+        $userList = UserList::findOrFail($id);
+        $userList->delete();
+
+        return response()->json(['message' => 'Lista excluída com sucesso!'], 200);
     }
 }

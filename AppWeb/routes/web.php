@@ -25,7 +25,8 @@ Route::get('/users', [UserController::class, 'indexWeb'])->name('users.indexWeb'
 
 Route::get('/userList', [UserListController::class, 'indexWeb'])->name('user-lists.indexWeb');
 Route::get('/userList/user/{id}', [UserListController::class, 'getByUser'])->name('user-lists.lists');
-//Route::put('/userList/{id}', [UserListController::class, 'updateWeb'])->name('user-lists.updateWeb');
+Route::put('/user-lists/{id}', [UserListController::class, 'updateWeb'])->name('user-lists.update');
+Route::delete('/user-lists/{id}', [UserListController::class, 'destroyWeb'])->name('user-lists.destroy');
 
 
 Route::resource('list-media', ListMediaController::class);
