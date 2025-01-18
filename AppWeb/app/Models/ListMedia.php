@@ -10,4 +10,10 @@ class ListMedia extends Model
     use HasFactory;
 
     protected $fillable = ['id_list_user', 'id_media'];
+
+    // Relacionamento com UserList
+    public function userList()
+    {
+        return $this->belongsTo(UserList::class, 'id_list_user');
+    }
 }

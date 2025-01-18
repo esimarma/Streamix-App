@@ -53,9 +53,16 @@
                                     <a href="{{ route('user-lists.lists', ['id' => $user->id]) }}">Ver Listas</a>
                                 </button>
                             </td>
-                                <td class="border border-gray-300 px-4 py-2">
-                                    <button class="text-blue-500 hover:underline">Editar</button>
-                                    <button class="text-red-500 hover:underline ml-2">Excluir</button>
+                                <td class="border border-gray-300 px-4 py-2 text-center">
+                                    <button class="text-red-500 hover:underline ml-4 excluir">
+                                    <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 12V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14 12V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach

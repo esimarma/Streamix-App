@@ -16,4 +16,9 @@ class UserList extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+    // Relação com ListMedia
+    public function listMedia()
+    {
+        return $this->hasMany(ListMedia::class, 'id_list_user');
+    }
 }

@@ -9,20 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('user_lists', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id_user')->change();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::table('user_lists', function (Blueprint $table) {
-            $table->dropForeign(['id_user']);
+            $table->string('id_user', 255)->change();
         });
     }
 };

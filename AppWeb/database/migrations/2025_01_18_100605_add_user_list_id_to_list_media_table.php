@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('user_lists', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+        Schema::table('list_media', function (Blueprint $table) {
+            // Adicionar a chave estrangeira
+            $table->foreign('id_list_user')->references('id')->on('user_lists')->onDelete('cascade');
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('user_lists', function (Blueprint $table) {
-            $table->dropForeign(['id_user']);
+        Schema::table('list_media', function (Blueprint $table) {
+            // Remover a chave estrangeira
+            $table->dropForeign(['id_list_user']);
         });
     }
 };
