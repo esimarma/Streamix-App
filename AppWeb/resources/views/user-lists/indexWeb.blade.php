@@ -43,7 +43,7 @@
                                 <th class="border border-gray-300 px-4 py-2 text-left">Utilizador</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Nome da Lista</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Tipo de Lista</th>
-                                <th class="border border-gray-300 px-4 py-2 text-left">Ver Média</th>
+                                <th class="border border-gray-300 px-4 py-2 text-left">Ver Media</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Ações</th>
                             </tr>
                         </thead>
@@ -61,7 +61,7 @@
                                 <td class="border border-gray-300 px-4 py-2">
                                     <button 
                                         class="text-blue-500 hover:underline" >
-                                        Ver Média
+                                        Ver Media
                                     </button>
                                 </td>
                                 <td class="border border-gray-300 px-4 py-2">

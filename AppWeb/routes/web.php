@@ -28,8 +28,8 @@ Route::get('/userList/user/{id}', [UserListController::class, 'getByUser'])->nam
 Route::put('/user-lists/{id}', [UserListController::class, 'updateWeb'])->name('user-lists.update');
 Route::delete('/user-lists/{id}', [UserListController::class, 'destroyWeb'])->name('user-lists.destroy');
 
+Route::get('/list-media', [ListMediaController::class, 'indexWeb'])->name('list-media.indexWeb');
 
-Route::resource('list-media', ListMediaController::class);
 Route::resource('ratings', RatingController::class);
 
 require __DIR__.'/auth.php';

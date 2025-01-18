@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SearchRequest;
 use App\Models\ListMedia;
 use App\Http\Resources\ListMediaResource;
 use App\Http\Requests\StoreListMediaRequest;
+use Illuminate\Support\Facades\Http;
 
 class ListMediaController extends Controller
 {
@@ -16,6 +18,36 @@ class ListMediaController extends Controller
    {
       $listMedias = ListMedia::all();
       return ListMediaResource::collection($listMedias);
+   }
+
+   public function indexWeb(SearchRequest $request)
+   {
+       $query = ListMedia::query();
+   
+       // Paginação
+       $listMedias = $query->paginate(10);
+   
+       // Token para autenticação
+       $bearerToken = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODVkMDg3ZmE2N2M1ZGQxMGRhZGYwYjU0YzllNWJiZiIsIm5iZiI6MTczMTU5MzYxOS40MDg3NTY3LCJzdWIiOiI2NzFhMWIzMjc2OTEwN2Q3N2I0Nzg5ZTIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AphmMyEeUGyMLUYur8S0kiwRTBxzYsnurfudZb6CGJY';
+   
+       // Itera sobre as mídias e busca os detalhes na API externa
+       foreach ($listMedias as $media) {
+           $endpoint = $media->media_type === 'tv' ? 'tv' : 'movie';
+   
+           $response = Http::withHeaders([
+               'Authorization' => $bearerToken,
+           ])->get("https://api.themoviedb.org/3/{$endpoint}/{$media->id_media}", [
+               'language' => 'pt-BR', // Idioma opcional
+           ]);
+   
+           if ($response->ok()) {
+               $media->name = $response->json('title') ?? $response->json('name'); // 'title' para filmes, 'name' para séries
+           } else {
+               $media->name = 'Não encontrado';
+           }
+       }
+   
+       return view('list-media.indexWeb', compact('listMedias'));
    }
 
    /*

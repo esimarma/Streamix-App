@@ -13,10 +13,13 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('users.indexWeb')" :active="request()->routeIs('users.indexWeb')">
-                        {{ __('Users') }}
+                        {{ __('Utilizadores') }}
                     </x-nav-link>
                     <x-nav-link :href="route('user-lists.indexWeb')" :active="request()->routeIs('user-lists.indexWeb')">
-                        {{ __('UserList') }}
+                        {{ __('Listas') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('list-media.indexWeb')" :active="request()->routeIs('list-media.indexWeb')">
+                        {{ __('Media') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -71,10 +74,13 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('users.indexWeb')" :active="request()->routeIs('users.indexWeb')">
-                {{ __('Users') }}
+                {{ __('Utilizadores') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user-lists.indexWeb')" :active="request()->routeIs('user-lists.indexWeb')">
-                {{ __('UserList') }}
+                {{ __('Listas') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('list-media.indexWeb')" :active="request()->routeIs('list-media.indexWeb')">
+                {{ __('Media') }}
             </x-responsive-nav-link>
         </div>
         
