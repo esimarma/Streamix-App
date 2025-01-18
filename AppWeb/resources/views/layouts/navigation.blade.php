@@ -4,9 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="mt-2 h-12 w-auto shrink-0 flex items-center">
                     <a href="{{ route('users.indexWeb') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <img src="{{ asset('favicon.ico') }}" alt="Logo" class="h-12 w-auto">
                     </a>
                 </div>
 
