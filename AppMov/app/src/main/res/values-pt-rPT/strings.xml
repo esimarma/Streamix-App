@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General -->
+    <string name="app_name">Streamix</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">Início</string>
+
+    <!-- Search Screen -->
+    <string name="search_title">Pesquisar</string>
+
+    <!-- Lists Screen -->
+    <string name="lists_title">Listas</string>
+    <string name="watchlist">Lista de Observação</string>
+    <string name="custom_lists">Listas Personalizadas</string>
+    <string name="to_watch">Para Ver</string>
+    <string name="watching">A Ver</string>
+    <string name="watched">Vistos</string>
+    <string name="show_more">Mostrar Mais</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">Perfil</string>
+    <string name="login_button">Iniciar Sessão</string>
+    <string name="edit_profile">Editar Perfil</string>
+    <string name="save_changes">Salvar Alterações</string>
+    <string name="email">E-mail</string>
+    <string name="current_password">Senha Atual</string>
+    <string name="new_password">Nova Senha</string>
+    <string name="confirm_password">Confirmar Senha</string>
+    <string name="error_password_mismatch">As senhas não coincidem!</string>
+    <string name="error_incorrect_password">Senha atual incorreta!</string>
+    <string name="success_changes_saved">Alterações salvas com sucesso!</string>
+    <string name="mock_username">Usuário de Teste</string>
+    <string name="edit_name">Nome</string>
+    <string name="edit_email">E-mail</string>
+
+    <string name="warning_message">Oh!</string>
+    <string name="information_message">Parece que ainda não tem sessão iniciada</string>
+    <string name="profile_image">Imagem do Perfil</string>
+    <string name="username_placeholder">Nome do Usuário</string>
+    <string name="email_placeholder">user@example.com</string>
+
+    <string name="statistics_title">Estatísticas</string>
+    <string name="watched_content">Conteúdo Assistido</string>
+    <string name="watched_series">X Séries</string>
+    <string name="watched_movies">X Filmes</string>
+    <string name="wasted_hours">Horas Desperdiçadas</string>
+    <string name="wasted_months">X Meses</string>
+    <string name="wasted_days">X Dias</string>
+    <string name="wasted_hours_count">X Horas</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Configurações</string>
+</resources>
