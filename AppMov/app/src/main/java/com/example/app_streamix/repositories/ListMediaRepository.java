@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListMediaRepository {
-    private static final String BASE_URL = "http://127.0.0.1:8000/api/";
+    private static final String BASE_URL = "http://10.0.2.2:8000/api/";
     private static ListMediaApi listMediaApi;
 
     // Inicialização do Retrofit
@@ -23,8 +23,24 @@ public class ListMediaRepository {
         listMediaApi = retrofit.create(ListMediaApi.class);
     }
 
-    // Método para acessar a API
+    // Métodos para acessar a API
     public Call<List<ListMedia>> getListMedia() {
         return listMediaApi.getListMedia();
+    }
+
+    public Call<ListMedia> createListMedia(ListMedia listMedia) {
+        return listMediaApi.createListMedia(listMedia);
+    }
+
+    public Call<ListMedia> getListMediaById(Long id) {
+        return listMediaApi.getListMediaById(id);
+    }
+
+    public Call<ListMedia> updateListMedia(Long id, ListMedia listMedia) {
+        return listMediaApi.updateListMedia(id, listMedia);
+    }
+
+    public Call<Void> deleteListMedia(Long id) {
+        return listMediaApi.deleteListMedia(id);
     }
 }

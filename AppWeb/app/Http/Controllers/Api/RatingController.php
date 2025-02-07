@@ -98,8 +98,6 @@ class RatingController extends Controller
            'userId' => $userId,
        ]);
    }
-   
-   
     
     /*
     * Show the form for creating a new resource.
