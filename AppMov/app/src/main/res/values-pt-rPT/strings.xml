@@ -34,21 +34,52 @@
     <string name="edit_name">Nome</string>
     <string name="edit_email">E-mail</string>
 
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="show_password">Mostrar palavra-passe</string>
+
     <string name="warning_message">Oh!</string>
     <string name="information_message">Parece que ainda não tem sessão iniciada</string>
     <string name="profile_image">Imagem do Perfil</string>
     <string name="username_placeholder">Nome do Usuário</string>
     <string name="email_placeholder">user@example.com</string>
 
+
+    <!-- Seção de Estatísticas -->
     <string name="statistics_title">Estatísticas</string>
+
+    <!-- Tabela de Conteúdo Assistido -->
     <string name="watched_content">Conteúdo Assistido</string>
     <string name="watched_series">X Séries</string>
     <string name="watched_movies">X Filmes</string>
+
+    <!-- Tabela de Horas Gastas -->
     <string name="wasted_hours">Horas Desperdiçadas</string>
     <string name="wasted_months">X Meses</string>
     <string name="wasted_days">X Dias</string>
     <string name="wasted_hours_count">X Horas</string>
 
+    <!-- Tabela de Comunidade -->
+    <string name="community">Comunidade</string>
+    <string name="comments">Comentários</string>
+    <string name="reviews">Avaliações</string>
+    <string name="average">Média</string>
+
+    <!-- Descrição do Ícone de Calendário -->
+    <string name="calendar_icon">Ícone de Calendário</string>
+
     <!-- Settings Screen -->
     <string name="settings_title">Configurações</string>
+
+
+    <string name="account_option">Configurações da Conta</string>
+    <string name="back">Voltar</string>
+    <string name="save">Salvar</string>
+    <string name="name">Nome</string>
+    <string name="change_password">Alterar Senha</string>
+    <string name="delete_account">Excluir Conta</string>
+    <string name="delete_account_message">Tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita.</string>
+    <string name="fill_all_fields">Preencha todos os campos</string>
+    <string name="changes_saved">Alterações salvas com sucesso!</string>
+    <string name="password_updated">Palavra-passe alterada com sucesso!</string>
 </resources>

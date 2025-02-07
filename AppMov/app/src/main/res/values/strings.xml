@@ -39,15 +39,48 @@
     <string name="username_placeholder">User Name</string>
     <string name="email_placeholder">user@example.com</string>
 
+
+
+    <!-- Statistics Section -->
     <string name="statistics_title">Statistics</string>
+
+    <!-- Watched Content Table -->
     <string name="watched_content">Watched Content</string>
     <string name="watched_series">X Series</string>
     <string name="watched_movies">X Movies</string>
+
+    <!-- Wasted Hours Table -->
     <string name="wasted_hours">Wasted Hours</string>
     <string name="wasted_months">X Months</string>
     <string name="wasted_days">X Days</string>
     <string name="wasted_hours_count">X Hours</string>
 
+    <!-- Community Table -->
+    <string name="community">Community</string>
+    <string name="comments">Comments</string>
+    <string name="reviews">Reviews</string>
+    <string name="average">Average</string>
+
+    <!-- Calendar Icon Description -->
+    <string name="calendar_icon">Calendar Icon</string>
+
+
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="show_password">Show password</string>
+
     <!-- Settings Screen -->
     <string name="settings_title">Settings</string>
+
+
+    <string name="account_option">Account Settings</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="name">Name</string>
+    <string name="change_password">Change Password</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="delete_account_message">Are you sure you want to delete your account? This action cannot be undone.</string>
+    <string name="fill_all_fields">Please fill in all fields</string>
+    <string name="changes_saved">Changes saved successfully!</string>
+    <string name="password_updated">Password updated successfully!</string>
 </resources>

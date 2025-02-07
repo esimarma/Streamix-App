@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:visibility="visible"
+        android:visibility="gone"
         android:padding="16dp">
 
         <TextView
@@ -39,7 +40,7 @@
             android:id="@+id/loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Iniciar Sessão"
+            android:text="@string/login_button"
             android:textColor="#1A1A41"
             android:backgroundTint="#FFFFFF"
             android:textSize="16sp"
@@ -52,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         android:padding="16dp">
 
         <!-- Profile Header -->
@@ -102,7 +103,7 @@
                     android:id="@+id/editUserButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Editar"
+                    android:text="@string/edit_profile"
                     android:backgroundTint="#FFFFFF"
                     android:textColor="#1A1A41"
                     android:textSize="14sp"
@@ -114,7 +115,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Estatísticas"
+            android:text="@string/statistics_title"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:fontFamily="sans-serif-medium"
@@ -128,157 +129,278 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-                <!-- Watched Content -->
-                <LinearLayout
+                <!-- Watched Content Table -->
+                <TableLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
                     android:background="#6A1B9A"
-                    android:padding="16dp"
+                    android:stretchColumns="*"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp">
 
+                    <!-- Title Row -->
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/watched_content_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/watched_content"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"/>
+                    </TableRow>
+
+                    <!-- Data Row -->
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/series_watched"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="X Séries"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/white"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="8dp" />
+
+                        <TextView
+                            android:id="@+id/movies_watched"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="X Filmes"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/white"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="8dp" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- Hours Spent Table -->
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:background="#6A1B9A"
+                    android:stretchColumns="*"
+                    android:layout_marginBottom="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"/>
+
+                    <!-- Title Row with Calendar Icon -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_calendar"
+                            android:contentDescription="calendar"
+                            android:layout_marginEnd="8dp"
+                            app:tint="@android:color/white" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Conteúdo Assistido"
-                        android:textColor="#FFFFFF"
+                        android:text="@string/wasted_hours"
+                        android:textColor="@android:color/white"
                         android:textSize="14sp"
-                        android:fontFamily="sans-serif-medium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="X Séries"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="X Filmes"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                        android:fontFamily="sans-serif-medium"/>
                 </LinearLayout>
 
-                <!-- Hours Spent -->
-                <LinearLayout
+            <!-- Data Row -->
+            <TableRow>
+                <TextView
+                    android:id="@+id/months_wasted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:text="X"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:padding="8dp"/>
+
+                <TextView
+                    android:id="@+id/days_wasted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:padding="8dp"/>
+
+                <TextView
+                    android:id="@+id/hours_wasted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:padding="8dp"/>
+            </TableRow>
+
+            <!-- Labels Row -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Meses"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:paddingBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dias"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:paddingBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Horas"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:paddingBottom="8dp"/>
+            </TableRow>
+        </TableLayout>
+
+                <!-- Community Table (NEW) -->
+                <TableLayout
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
                     android:background="#6A1B9A"
-                    android:padding="16dp"
+                    android:stretchColumns="*"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Horas Desperdiçadas"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:fontFamily="sans-serif-medium" />
+                    <!-- Title Row -->
+                    <TableRow
+                        android:gravity="center">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="X Meses"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="8dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="X Dias"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_calendar"
+                                android:contentDescription="calendar"
+                                android:layout_marginEnd="8dp"
+                                app:tint="@android:color/white" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="X Horas"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
-                </LinearLayout>
+                            <TextView
+                                android:id="@+id/community_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/community"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp"
+                                android:fontFamily="sans-serif-medium"/>
+                        </LinearLayout>
+                    </TableRow>
+
+                    <!-- Data Row -->
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="X"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="X"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="X"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:gravity="center" />
+                    </TableRow>
+
+                    <!-- Labels Row -->
+                    <TableRow>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/comments"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/reviews"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/average"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:gravity="center" />
+                    </TableRow>
+                </TableLayout>
+
+
             </LinearLayout>
         </HorizontalScrollView>
+
+
     </LinearLayout>
-
-    <!-- Profile Edit Layout -->
-    <ScrollView
-        android:id="@+id/profileEditLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:visibility="gone">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/editNameField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nome"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#AAAAAA"
-                android:backgroundTint="#FFFFFF"
-                android:layout_marginBottom="16dp" />
-
-            <EditText
-                android:id="@+id/editEmailField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="E-mail"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#AAAAAA"
-                android:backgroundTint="#FFFFFF"
-                android:layout_marginBottom="16dp" />
-
-            <EditText
-                android:id="@+id/currentPasswordField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Palavra-passe atual"
-                android:inputType="textPassword"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#AAAAAA"
-                android:backgroundTint="#FFFFFF"
-                android:layout_marginBottom="16dp" />
-
-            <EditText
-                android:id="@+id/newPasswordField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nova palavra-passe"
-                android:inputType="textPassword"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#AAAAAA"
-                android:backgroundTint="#FFFFFF"
-                android:layout_marginBottom="16dp" />
-
-            <EditText
-                android:id="@+id/confirmPasswordField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Confirmar palavra-passe"
-                android:inputType="textPassword"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#AAAAAA"
-                android:backgroundTint="#FFFFFF"
-                android:layout_marginBottom="16dp" />
-
-            <Button
-                android:id="@+id/saveChangesButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Salvar Alterações"
-                android:textColor="#1A1A41"
-                android:backgroundTint="#FFFFFF" />
-        </LinearLayout>
-    </ScrollView>
 </FrameLayout>

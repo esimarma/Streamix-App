@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    tools:ignore="MissingConstraints">
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Top Row: Back Button, Title & Save Button -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Back Button (Top-Left) -->
+                <ImageView
+                    android:id="@+id/back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/left_arrow"
+                    android:contentDescription="@string/back"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="22dp"
+                    app:tint="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Title (Top-Centered) -->
+                <TextView
+                    android:id="@+id/login_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_option"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Save Button (Top-Right) -->
+                <ImageView
+                    android:id="@+id/save_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_save"
+                    android:contentDescription="@string/save"
+                    android:padding="5dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="18dp"
+                    app:tint="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <!-- Profile Picture -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profile_picture"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="Profile Picture"
+                android:src="@drawable/profile_black"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center" />
+
+            <!-- User Details Section -->
+            <TextView
+                android:id="@+id/textView_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="30dp" />
+
+            <EditText
+                android:id="@+id/editText_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_name"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:padding="12dp"
+                android:backgroundTint="@color/white" />
+
+            <TextView
+                android:id="@+id/textView_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" />
+
+            <EditText
+                android:id="@+id/editText_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:padding="12dp"
+                android:backgroundTint="@color/white" />
+
+            <!-- Change Password -->
+            <TextView
+                android:id="@+id/change_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change_password"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp" />
+
+            <!-- Spacer to push the delete button to the bottom -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Delete Account Button -->
+            <Button
+                android:id="@+id/delete_account_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"
+                android:text="@string/delete_account"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Delete Confirmation Text -->
+            <TextView
+                android:id="@+id/delete_account_warning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_account_message"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:layout_marginBottom="20dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
