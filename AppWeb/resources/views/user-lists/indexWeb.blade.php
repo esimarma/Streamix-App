@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
                     <label for="search" class="mb-4">Pesquisar:</label>
-                    <form method="GET" action="{{ route('user-lists.indexWeb') }}" style="display: flex; gap: 10px; align-items: center;" class="mb-4 flex items-center space-x-2">
+                    <form method="GET" action="{{ route('user-lists.indexWeb', ['userId' => $userId]) }}" style="display: flex; gap: 10px; align-items: center;" class="mb-4 flex items-center space-x-2">
                         <input 
                             type="text" 
                             name="user_name" 
@@ -39,7 +39,6 @@
                     <table class="min-w-full border-collapse border border-gray-200">
                         <thead>
                             <tr class="bg-gray-100">
-                                <th class="border border-gray-300 px-4 py-2 text-left">ID</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Utilizador</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Nome da Lista</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Tipo de Lista</th>
@@ -49,8 +48,7 @@
                         </thead>
                         <tbody>
                             @foreach ($userList as $list)
-                            <tr>
-                                <td class="border border-gray-300 px-4 py-2">{{ $list->id }}</td>
+                            <tr data-id="{{ $list->id }}">
                                 <td class="border border-gray-300 px-4 py-2">{{ $list->user->name }}</td>
                                 <td class="border border-gray-300 px-4 py-2">
                                     <input readonly type="text" name="nome" value="{{ $list->name }}" style="border: none; outline: none; background: transparent;">
@@ -59,10 +57,11 @@
                                     <input readonly type="text" name="tipo" value="{{ $list->list_type }}" style="border: none; outline: none; background: transparent;">
                                 </td>
                                 <td class="border border-gray-300 px-4 py-2">
-                                    <button 
-                                        class="text-blue-500 hover:underline" >
-                                        Ver Media
-                                    </button>
+                                <button 
+                                    class="text-blue-500 hover:underline ver-listas-btn" 
+                                    data-id="{{ $list->id }}">
+                                    <a href="{{ route('list-media.indexWeb', ['userListId' => $list->id]) }}">Ver Medias</a>
+                                </button>
                                 </td>
                                 <td class="border border-gray-300 px-4 py-2">
                                     <button class="text-blue-500 hover:underline editar">
@@ -98,7 +97,7 @@
 
                 if (isEditing) {
                     // Salvar as alterações via AJAX
-                    const id = row.querySelector('td:first-child').textContent.trim();
+                    const id = row.getAttribute('data-id');
                     const nome = row.querySelector('input[name="nome"]').value;
                     const tipo = row.querySelector('input[name="tipo"]').value;
 
@@ -150,7 +149,7 @@
         document.querySelectorAll('.excluir').forEach(button => {
             button.addEventListener('click', function () {
                 const row = this.closest('tr');
-                const id = row.querySelector('td:first-child').textContent.trim();
+                const id = row.getAttribute('data-id');
 
                 // Exibe uma confirmação antes de excluir
                 const confirmar = confirm('Tem certeza que deseja excluir esta lista?');

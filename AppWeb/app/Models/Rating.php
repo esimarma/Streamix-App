@@ -10,4 +10,10 @@ class Rating extends Model
     use HasFactory;
 
     protected $fillable = ['id_media', 'id_user', 'rating'];
+
+    // Relação com o User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

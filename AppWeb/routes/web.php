@@ -23,13 +23,14 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/users', [UserController::class, 'indexWeb'])->name('users.indexWeb');
 
-Route::get('/userList', [UserListController::class, 'indexWeb'])->name('user-lists.indexWeb');
-Route::get('/userList/user/{id}', [UserListController::class, 'getByUser'])->name('user-lists.lists');
+Route::get('/userList/{userId?}', [UserListController::class, 'indexWeb'])->name('user-lists.indexWeb');
 Route::put('/user-lists/{id}', [UserListController::class, 'updateWeb'])->name('user-lists.update');
 Route::delete('/user-lists/{id}', [UserListController::class, 'destroyWeb'])->name('user-lists.destroy');
 
-Route::get('/list-media', [ListMediaController::class, 'indexWeb'])->name('list-media.indexWeb');
+Route::get('list-media/{userListId?}', [ListMediaController::class, 'indexWeb'])->name('list-media.indexWeb');
+Route::delete('/list-media/{id}', [ListMediaController::class, 'destroyWeb'])->name('list-media.destroy');
 
-Route::resource('ratings', RatingController::class);
+Route::get('/ratings/{userId?}', [RatingController::class, 'indexWeb'])->name('ratings.indexWeb');
+Route::delete('/ratings/{id}', [RatingController::class, 'destroyWeb'])->name('ratings.destroy');
 
 require __DIR__.'/auth.php';

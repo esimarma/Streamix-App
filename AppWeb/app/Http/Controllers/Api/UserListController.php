@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserListRequest;
-use App\Http\Requests\SearchRequest;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserListResource;
 use App\Models\User;
@@ -21,7 +20,7 @@ class UserListController extends Controller
        return UserListResource::collection($userList);
     }
     
-    public function indexWeb(Request $request)
+    public function indexWeb(Request $request, $userId = null )
     {
         $query = UserList::query();
     
@@ -37,25 +36,23 @@ class UserListController extends Controller
                 $q->where('name', 'LIKE', "%{$userName}%");
             });
         }
+
+        // Filtro pelo id_list_user caso seja fornecido
+        if ($userId) {
+            $query->where('id_user', $userId);
+        }
     
         // Eager loading e paginação
         $userList = $query->with('user')->paginate(10);
     
         // Certifique-se de que está passando a variável correta
-        return view('user-lists.indexWeb', compact('userList')); 
+        return view('user-lists.indexWeb', [
+            'userList' => $userList,
+            'filters' => $request->all(), // Passa todos os filtros para a view
+            'userId' => $userId, // Passa o userListId para a view
+        ]);
     }
 
-    public function getByUser($userId)
-    {
-        // Obtemos o usuário (caso necessário para exibir detalhes na página)
-        $user = User::findOrFail($userId);
-
-        // Obtemos as listas associadas ao usuário
-        $userList = UserList::where('id_user', $userId)->with('user')->paginate(10);
-
-        // Retornamos a view com as listas e o usuário
-        return view('user-lists.indexWeb', compact('userList', 'user'));
-    }
     /**
      * Show the form for creating a new resource.
      */

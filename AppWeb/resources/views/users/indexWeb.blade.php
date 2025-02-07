@@ -35,6 +35,7 @@
                                 <th class="border border-gray-300 px-4 py-2 text-left">Tempo Series</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Tempo Filmes</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Listas</th>
+                                <th class="border border-gray-300 px-4 py-2 text-left">Avaliações</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Ações</th>
                             </tr>
                         </thead>
@@ -50,9 +51,16 @@
                                 <button 
                                     class="text-blue-500 hover:underline ver-listas-btn" 
                                     data-id="{{ $user->id }}">
-                                    <a href="{{ route('user-lists.lists', ['id' => $user->id]) }}">Ver Listas</a>
+                                    <a href="{{ route('user-lists.indexWeb', ['userId' => $user->id]) }}">Ver Listas</a>
                                 </button>
-                            </td>
+                                </td>
+                                <td class="border border-gray-300 px-4 py-2">
+                                <button 
+                                    class="text-blue-500 hover:underline ver-listas-btn" 
+                                    data-id="{{ $user->id }}">
+                                    <a href="{{ route('ratings.indexWeb', ['userId' => $user->id]) }}">Ver Avaliações</a>
+                                </button>
+                                </td>
                                 <td class="border border-gray-300 px-4 py-2 text-center">
                                     <button class="text-red-500 hover:underline ml-4 excluir">
                                     <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

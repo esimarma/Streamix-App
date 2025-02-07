@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Models\UserList;
 
 class UserController extends Controller
 {
@@ -42,4 +43,24 @@ class UserController extends Controller
       $users = User::findOrFail($id);
       return new UserResource($users);
    }
+
+    // Método para atualizar o tempo de filme assistido
+    public function updateUserMovieWastedTime($userId, $runtime)
+    {
+      $user = User::findOrFail($userId);
+
+      if ($user) {
+         $user->movie_wasted_time_min += $runtime;
+         $user->save();
+ 
+         return response()->json([
+               'message' => 'Tempo de filme atualizado com sucesso!',
+               'data' => $user,
+         ], 200);
+      }
+
+        return response()->json([
+            'message' => 'Utilizador não encontrado.',
+        ], 404);
+    }
 }

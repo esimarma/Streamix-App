@@ -9,6 +9,8 @@ class ListMedia extends Model
 {
     use HasFactory;
 
+    protected $table = 'list_media';
+
     protected $fillable = ['id_list_user', 'id_media', 'media_type'];
 
     // Relacionamento com UserList

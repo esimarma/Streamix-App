@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('list-media.indexWeb')" :active="request()->routeIs('list-media.indexWeb')">
                         {{ __('Media') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('ratings.indexWeb')" :active="request()->routeIs('ratings.indexWeb')">
+                        {{ __('Avaliações') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -81,6 +84,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('list-media.indexWeb')" :active="request()->routeIs('list-media.indexWeb')">
                 {{ __('Media') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('ratings.indexWeb')" :active="request()->routeIs('ratings.indexWeb')">
+                {{ __('Avaliações') }}
             </x-responsive-nav-link>
         </div>
         
