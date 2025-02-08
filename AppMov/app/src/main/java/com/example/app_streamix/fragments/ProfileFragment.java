@@ -32,7 +32,7 @@ public class ProfileFragment extends Fragment {
 
         // Profile components
         TextView userNameText = view.findViewById(R.id.userNameText);
-        TextView displayEmail = view.findViewById(R.id.emailText);
+
 
         // Buttons
         Button loginButton = view.findViewById(R.id.loginButton);

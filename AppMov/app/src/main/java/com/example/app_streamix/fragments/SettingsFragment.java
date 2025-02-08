@@ -31,7 +31,11 @@ public class SettingsFragment extends Fragment {
 
         // Account Option
         view.findViewById(R.id.accountOption).setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Conta clicked", Toast.LENGTH_SHORT).show();
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, new AccountFragment()) // Navigate to AccountFragment
+                    .addToBackStack(null) // Allow back navigation
+                    .commit();
         });
 
         // Appearance Option

@@ -47,360 +47,166 @@
             android:fontFamily="sans-serif-medium" />
     </LinearLayout>
 
-    <!-- Logged-In Layout -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loggedInLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="visible"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:visibility="visible">
 
-        <!-- Profile Header -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="16dp">
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:contentDescription="User Profile Image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"/>
 
-            <!-- Profile Image -->
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:src="@drawable/profile_black"
-                android:contentDescription="User Profile Image"
-                android:layout_marginEnd="16dp"
-                android:scaleType="centerCrop" />
-
-            <!-- Name and Edit Button -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/userNameText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User Name"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_marginBottom="4dp" />
-
-                <TextView
-                    android:id="@+id/emailText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="killme@gmail.com"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_marginBottom="4dp" />
-
-                <Button
-                    android:id="@+id/editUserButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/edit_profile"
-                    android:backgroundTint="#FFFFFF"
-                    android:textColor="#1A1A41"
-                    android:textSize="14sp"
-                    android:fontFamily="sans-serif-medium" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Statistics Section -->
+        <!-- User Name -->
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/userNameText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/statistics_title"
+            android:fontFamily="sans-serif-medium"
+            android:text="User Name"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:fontFamily="sans-serif-medium"
-            android:layout_marginBottom="8dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileImage"
+            android:layout_marginTop="12dp"/>
 
-        <HorizontalScrollView
+        <!-- Edit Profile Button -->
+        <Button
+            android:id="@+id/editUserButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/edit_profile"
+            android:textColor="#1A1A41"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userNameText"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Divider -->
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            app:layout_constraintTop_toBottomOf="@id/editUserButton"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Statistics Title -->
+        <TextView
+            android:id="@+id/statisticsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Statistics"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            android:layout_marginTop="12dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
+            app:layout_constraintTop_toBottomOf="@id/statisticsTitle"
+            android:layout_marginTop="12dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
+            <!-- X Filmes -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/statMovies"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#6A1B9A"
+                android:layout_margin="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/statSeries"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <!-- Watched Content Table -->
-                <TableLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="140dp"
-                    android:layout_weight="1"
-                    android:padding="8dp"
-                    android:background="#6A1B9A"
-                    android:stretchColumns="*"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp">
-
-                    <!-- Title Row -->
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/watched_content_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/watched_content"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="sans-serif-medium"
-                            android:padding="8dp"
-                            android:gravity="center"
-                            android:layout_gravity="center"/>
-                    </TableRow>
-
-                    <!-- Data Row -->
-                    <TableRow>
-
-                        <TextView
-                            android:id="@+id/series_watched"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="X Séries"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/white"
-                            android:gravity="center"
-                            android:layout_weight="1"
-                            android:padding="8dp" />
-
-                        <TextView
-                            android:id="@+id/movies_watched"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="X Filmes"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/white"
-                            android:gravity="center"
-                            android:layout_weight="1"
-                            android:padding="8dp" />
-                    </TableRow>
-                </TableLayout>
-
-                <!-- Hours Spent Table -->
-                <TableLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="140dp"
-                    android:layout_weight="1"
-                    android:padding="8dp"
-                    android:background="#6A1B9A"
-                    android:stretchColumns="*"
-                    android:layout_marginBottom="8dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"/>
-
-                    <!-- Title Row with Calendar Icon -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_calendar"
-                            android:contentDescription="calendar"
-                            android:layout_marginEnd="8dp"
-                            app:tint="@android:color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/wasted_hours"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
-                        android:fontFamily="sans-serif-medium"/>
-                </LinearLayout>
-
-            <!-- Data Row -->
-            <TableRow>
                 <TextView
-                    android:id="@+id/months_wasted"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="X"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="X Filmes"
+                    android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:padding="8dp"/>
+                    android:textStyle="bold"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- X Séries -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/statSeries"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#6A1B9A"
+                android:layout_margin="8dp"
+                app:layout_constraintStart_toEndOf="@id/statMovies"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/days_wasted"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="X"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="X Séries"
+                    android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:padding="8dp"/>
+                    android:textStyle="bold"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- X Horas -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/statHours"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#6A1B9A"
+                android:layout_margin="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/statMovies"
+                app:layout_constraintEnd_toStartOf="@id/statHours2">
 
                 <TextView
-                    android:id="@+id/hours_wasted"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="X"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="X Horas"
+                    android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:padding="8dp"/>
-            </TableRow>
+                    android:textStyle="bold"/>
+            </androidx.cardview.widget.CardView>
 
-            <!-- Labels Row -->
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Meses"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:paddingBottom="8dp"/>
+            <!-- Invisible Placeholder (To Ensure Equal Sizing) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/statHours2"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#6A1B9A"
+                android:layout_margin="8dp"
+                app:layout_constraintStart_toEndOf="@id/statHours"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/statSeries"
+                android:visibility="invisible"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dias"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:paddingBottom="8dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Horas"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:paddingBottom="8dp"/>
-            </TableRow>
-        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <!-- Community Table (NEW) -->
-                <TableLayout
-                    android:layout_width="0dp"
-                    android:layout_height="140dp"
-                    android:layout_weight="1"
-                    android:padding="8dp"
-                    android:background="#6A1B9A"
-                    android:stretchColumns="*"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp">
-
-                    <!-- Title Row -->
-                    <TableRow
-                        android:gravity="center">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:padding="8dp">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_calendar"
-                                android:contentDescription="calendar"
-                                android:layout_marginEnd="8dp"
-                                app:tint="@android:color/white" />
-
-                            <TextView
-                                android:id="@+id/community_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/community"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                android:fontFamily="sans-serif-medium"/>
-                        </LinearLayout>
-                    </TableRow>
-
-                    <!-- Data Row -->
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="X"
-                            android:textColor="@android:color/white"
-                            android:textSize="12sp"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="X"
-                            android:textColor="@android:color/white"
-                            android:textSize="12sp"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="X"
-                            android:textColor="@android:color/white"
-                            android:textSize="12sp"
-                            android:gravity="center" />
-                    </TableRow>
-
-                    <!-- Labels Row -->
-                    <TableRow>
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:text="@string/comments"
-                            android:textColor="@android:color/white"
-                            android:textSize="12sp"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:text="@string/reviews"
-                            android:textColor="@android:color/white"
-                            android:textSize="12sp"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:text="@string/average"
-                            android:textColor="@android:color/white"
-                            android:textSize="12sp"
-                            android:gravity="center" />
-                    </TableRow>
-                </TableLayout>
-
-
-            </LinearLayout>
-        </HorizontalScrollView>
-
-
-    </LinearLayout>
 </FrameLayout>

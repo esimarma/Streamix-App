@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -69,6 +70,13 @@ public class SearchFragment extends Fragment {
         ImageView searchButton = view.findViewById(R.id.searchButton);
         ImageView clearSearchButton = view.findViewById(R.id.clearSearchButton);
         RecyclerView searchRecyclerView = view.findViewById(R.id.searchRecyclerView);
+        Button filterButton = view.findViewById(R.id.filterButton);
+
+
+        filterButton.setOnClickListener(v -> {
+            FilterFragment filterFragment = new FilterFragment();
+            filterFragment.show(getParentFragmentManager(), "FilterFragment");
+        });
 
         // Initialize data and adapter
         List<String> itemList = getMockData();
