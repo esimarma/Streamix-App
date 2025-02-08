@@ -40,18 +40,26 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Media media = mediaList.get(position); // Obtém o objeto Media
-        int movieId = media.getId(); // Obtém o ID do filme
+        String mediaType = "";
+        if(media.getName() == null) {
+            mediaType = "movie";
+        } else {
+            mediaType = "tv";
+        }
 
         // Faz a chamada assíncrona para obter o Media pelo ID do filme
-        mediaRepository.getByIdMovie(movieId).enqueue(new Callback<Media>() {
+        mediaRepository.getMediaById(media.getId(), mediaType).enqueue(new Callback<Media>() {
             @Override
             public void onResponse(Call<Media> call, Response<Media> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Media mediaResponse = response.body();
 
                     // Define o título ou nome caso o título seja nulo
-                    holder.titleTextView.setText(mediaResponse.getTitle());
-
+                    if (mediaResponse.getTitle() == null) {
+                        holder.titleTextView.setText(mediaResponse.getName());
+                    } else {
+                        holder.titleTextView.setText(mediaResponse.getTitle());
+                    }
                     // Busca a imagem do filme na API
                     String imageUrl = ApiConstants.BASE_URL_IMAGE + mediaResponse.getPosterPath();
 

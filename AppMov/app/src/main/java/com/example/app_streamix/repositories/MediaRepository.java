@@ -42,10 +42,6 @@ public class MediaRepository {
     }
 
     // Métodos para acessar a API
-    public Call<Media> getByIdMovie(int id) {
-        return api.getByIdMovie(id);
-    }
-
     public Call<MediaResponse> getPopularMovies() {
         return api.getPopularMovies();
     }
@@ -54,8 +50,14 @@ public class MediaRepository {
         return api.getTopRatedMovies();
     }
 
-    public Call<Media> getByIdSerie(int id) {
-        return api.getByIdSerie(id);
+    public Call<Media> getMediaById(int id, String mediaType) {
+        if (mediaType.equals("movie")) {
+            return api.getByIdMovie(id);
+        } else if (mediaType.equals("tv")) {
+            return api.getByIdSerie(id);
+        } else {
+            throw new IllegalArgumentException("Tipo de mídia inválido: " + mediaType);
+        }
     }
 
     public Call<MediaResponse> getPopularSeries() {
