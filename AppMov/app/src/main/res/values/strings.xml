@@ -7,6 +7,8 @@
 
     <!-- Search Screen -->
     <string name="search_title">Search</string>
+    <string name="apply_filters">Apply Filters</string>
+    <string name="remove_filters">Remove Filters</string>
 
     <!-- Lists Screen -->
     <string name="lists_title">Lists</string>
@@ -43,26 +45,6 @@
 
     <!-- Statistics Section -->
     <string name="statistics_title">Statistics</string>
-
-    <!-- Watched Content Table -->
-    <string name="watched_content">Watched Content</string>
-    <string name="watched_series">X Series</string>
-    <string name="watched_movies">X Movies</string>
-
-    <!-- Wasted Hours Table -->
-    <string name="wasted_hours">Wasted Hours</string>
-    <string name="wasted_months">X Months</string>
-    <string name="wasted_days">X Days</string>
-    <string name="wasted_hours_count">X Hours</string>
-
-    <!-- Community Table -->
-    <string name="community">Community</string>
-    <string name="comments">Comments</string>
-    <string name="reviews">Reviews</string>
-    <string name="average">Average</string>
-
-    <!-- Calendar Icon Description -->
-    <string name="calendar_icon">Calendar Icon</string>
 
 
     <string name="login">Login</string>
