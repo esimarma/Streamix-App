@@ -3,6 +3,7 @@ package com.example.app_streamix.repositories;
 
 import com.example.app_streamix.interfaces.RatingApi;
 import com.example.app_streamix.models.Rating;
+import com.example.app_streamix.utils.ApiConstants;
 
 import java.util.List;
 
@@ -11,13 +12,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RatingRepository {
-    private static final String BASE_URL = "http://10.0.2.2:8000/api/";
+    private static String baseUrl = ApiConstants.BASE_URL;
     private static RatingApi ratingApi;
 
     // Inicialização do Retrofit
     static {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
