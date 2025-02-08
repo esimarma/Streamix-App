@@ -18,8 +18,6 @@ import com.example.app_streamix.R;
 import com.example.app_streamix.models.MediaResponse;
 import com.example.app_streamix.repositories.MediaRepository;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
