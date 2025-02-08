@@ -12,7 +12,6 @@
         android:layout_height="150dp"
         android:scaleType="centerCrop"
         android:contentDescription="Item image"
-        android:background="@drawable/rounded_corners"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

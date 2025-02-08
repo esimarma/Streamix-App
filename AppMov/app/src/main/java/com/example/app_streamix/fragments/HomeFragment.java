@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,14 @@ import android.widget.Button;
 import com.example.app_streamix.adapters.ItemAdapter;
 import com.example.app_streamix.MainActivity;
 import com.example.app_streamix.R;
+import com.example.app_streamix.models.MediaResponse;
+import com.example.app_streamix.repositories.MediaRepository;
 
-import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +30,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+    MediaRepository mediaRepository;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +66,10 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize MediaRepository
+        mediaRepository = new MediaRepository();
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -82,10 +93,62 @@ public class HomeFragment extends Fragment {
         topRatedSeriesRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         // Set adapters
-        popularMoviesRecycler.setAdapter(new ItemAdapter(getMockMovies()));
-        popularSeriesRecycler.setAdapter(new ItemAdapter(getMockSeries()));
-        topRatedMoviesRecycler.setAdapter(new ItemAdapter(getMockTopRatedMovies()));
-        topRatedSeriesRecycler.setAdapter(new ItemAdapter(getMockTopRatedSeries()));
+
+        mediaRepository.getPopularMovies().enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<MediaResponse> call, Response<MediaResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    popularMoviesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MediaResponse> call, Throwable t) {
+                Log.d("HomeFragment", "onFailure: " + t.getMessage());
+            }
+        });
+
+        mediaRepository.getPopularSeries().enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<MediaResponse> call, Response<MediaResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    popularSeriesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MediaResponse> call, Throwable t) {
+                Log.d("HomeFragment", "onFailure: " + t.getMessage());
+            }
+        });
+
+        mediaRepository.getTopRatedMovies().enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<MediaResponse> call, Response<MediaResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    topRatedMoviesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MediaResponse> call, Throwable t) {
+                Log.d("HomeFragment", "onFailure: " + t.getMessage());
+            }
+        });
+
+        mediaRepository.getTopRatedSeries().enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<MediaResponse> call, Response<MediaResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    topRatedSeriesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MediaResponse> call, Throwable t) {
+                Log.d("HomeFragment", "onFailure: " + t.getMessage());
+            }
+        });
 
         // Set button click listener
         Button exploreMoreButton = view.findViewById(R.id.exploreMoreButton);
@@ -96,22 +159,4 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
-
-    // Mock data for Top Rated Movies and Series
-    private List<String> getMockTopRatedMovies() {
-        return Arrays.asList("Top Filme #1", "Top Filme #2", "Top Filme #3", "Top Filme #4");
-    }
-
-    private List<String> getMockTopRatedSeries() {
-        return Arrays.asList("Top Série #1", "Top Série #2", "Top Série #3");
-    }
-
-    private List<String> getMockMovies() {
-        return Arrays.asList("ex filme #1", "ex filme #2", "ex filme #3", "ex filme #4");
-    }
-
-    private List<String> getMockSeries() {
-        return Arrays.asList("ex serie #1", "ex serie #2", "ex serie #3");
-    }
-
 }

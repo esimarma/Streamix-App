@@ -6,32 +6,39 @@ public class Media {
     private Integer id;
     private Boolean adult;
     private String overview;
-    private String posterPath;
+    private String poster_path;
     private String title;
     private String name;
-    private Double voteAverage;
-    private Integer voteCount;
+    private Double vote_average;
+    private Integer vote_count;
     private Integer runtime;
-    private String releaseDate;
+    private String release_date;
     private List<Genre> genres;
-    private Integer numberOfEpisodes;
-    private Integer numberOfSeasons;
+    private Integer number_of_episodes;
+    private Integer number_of_seasons;
     private String MediaType;
 
-    public Media(Integer id, Boolean adult, String overview, String posterPath, String title, String name, Double voteAverage, Integer voteCount, Integer runtime, String releaseDate, List<Genre> genres, Integer numberOfEpisodes, Integer numberOfSeasons, String mediaType) {
+    public Media(Integer id, Boolean adult, String overview, String posterPath, String title, String name,
+                 Double voteAverage, Integer voteCount, Integer runtime, String releaseDate, List<Genre> genres,
+                 Integer numberOfEpisodes, Integer numberOfSeasons, String mediaType) {
         this.id = id;
         this.adult = adult;
         this.overview = overview;
-        this.posterPath = posterPath;
+        this.poster_path = posterPath;
         this.title = title;
         this.name = name;
-        this.voteAverage = voteAverage;
-        this.voteCount = voteCount;
+        if(title != null && !title.isEmpty()) {
+            setMediaType("movie");
+        } else {
+            setMediaType("tv");
+        }
+        this.vote_average = voteAverage;
+        this.vote_count = voteCount;
         this.runtime = runtime;
-        this.releaseDate = releaseDate;
+        this.release_date = releaseDate;
         this.genres = genres;
-        this.numberOfEpisodes = numberOfEpisodes;
-        this.numberOfSeasons = numberOfSeasons;
+        this.number_of_episodes = numberOfEpisodes;
+        this.number_of_seasons = numberOfSeasons;
         MediaType = mediaType;
     }
     // Getters and Setters
@@ -61,43 +68,35 @@ public class Media {
     }
 
     public String getPosterPath() {
-        return posterPath;
+        return poster_path;
     }
 
     public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+        this.poster_path = posterPath;
     }
 
     public String getTitle() {
-        return title;
+        return (title != null && !title.isEmpty()) ? title : name;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Double getVoteAverage() {
-        return voteAverage;
+        return vote_average;
     }
 
     public void setVoteAverage(Double voteAverage) {
-        this.voteAverage = voteAverage;
+        this.vote_average = voteAverage;
     }
 
     public Integer getVoteCount() {
-        return voteCount;
+        return vote_count;
     }
 
     public void setVoteCount(Integer voteCount) {
-        this.voteCount = voteCount;
+        this.vote_count = voteCount;
     }
 
     public Integer getRuntime() {
@@ -109,11 +108,11 @@ public class Media {
     }
 
     public String getReleaseDate() {
-        return releaseDate;
+        return release_date;
     }
 
     public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+        this.release_date = releaseDate;
     }
 
     public List<Genre> getGenres() {
@@ -125,19 +124,19 @@ public class Media {
     }
 
     public Integer getNumberOfEpisodes() {
-        return numberOfEpisodes;
+        return number_of_episodes;
     }
 
     public void setNumberOfEpisodes(Integer numberOfEpisodes) {
-        this.numberOfEpisodes = numberOfEpisodes;
+        this.number_of_episodes = number_of_episodes;
     }
 
     public Integer getNumberOfSeasons() {
-        return numberOfSeasons;
+        return number_of_seasons;
     }
 
     public void setNumberOfSeasons(Integer numberOfSeasons) {
-        this.numberOfSeasons = numberOfSeasons;
+        this.number_of_seasons = numberOfSeasons;
     }
 
     public String getMediaType() {
