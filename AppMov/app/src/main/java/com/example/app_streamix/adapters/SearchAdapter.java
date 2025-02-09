@@ -1,5 +1,6 @@
 package com.example.app_streamix.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +9,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.app_streamix.R;
+import com.example.app_streamix.models.Media;
+import com.example.app_streamix.repositories.MediaRepository;
+import com.example.app_streamix.utils.ApiConstants;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
-    private List<String> data;
+    private List<Media> mediaList;
+    private final MediaRepository mediaRepository;
 
-    public SearchAdapter(List<String> data) {
-        this.data = data;
+    public SearchAdapter(List<Media> mediaList, MediaRepository mediaRepository) {
+        this.mediaList = mediaList;
+        this.mediaRepository = mediaRepository;
     }
 
     @NonNull
@@ -29,28 +40,54 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String item = data.get(position);
+        Media media = mediaList.get(position);
+        String mediaType = "";
+        if(media.getName() == null) {
+            mediaType = "movie";
+        } else {
+            mediaType = "tv";
+        }
 
-        // For simplicity, we'll display the entire string in the title TextView
-        holder.itemTitle.setText(item);
+        mediaRepository.getMediaById(media.getId(), mediaType).enqueue(new Callback<Media>() {
+            @Override
+            public void onResponse(Call<Media> call, Response<Media> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Media mediaResponse = response.body();
 
-        // Mock some details (e.g., for demonstration purposes)
-        holder.itemDetails.setText("Ano - Gênero - Duração");
+                    // Define o título ou nome caso o título seja nulo
+                    if (mediaResponse.getTitle() == null) {
+                        holder.itemTitle.setText(mediaResponse.getName());
+                    } else {
+                        holder.itemTitle.setText(mediaResponse.getTitle());
+                    }
+                    // Busca a imagem do filme na API
+                    String imageUrl = ApiConstants.BASE_URL_IMAGE + mediaResponse.getPosterPath();
 
-        // Mock some description
-        holder.itemDescription.setText("Sinopse do filme ou série");
+                    // Usa Glide para carregar a imagem no ImageView
+                    Glide.with(holder.itemView.getContext())
+                            .load(imageUrl)
+                            .into(holder.itemImage);
 
-        // Optionally, set an image (mocked or fetched from a URL)
-        holder.itemImage.setImageResource(R.drawable.book_cover_trigun); // Replace with an actual drawable or URL loading logic
+                    holder.itemDetails.setText("Ano - Gênero - Duração");
+
+                    holder.itemDescription.setText(mediaResponse.getOverview());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Media> call, Throwable t) {
+                Log.d("TAG", "onFailure (getByIdMovie): " + t.getMessage());
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return mediaList.size();
     }
 
-    public void updateData(List<String> newData) {
-        this.data = newData;
+    public void updateData(List<Media> newData) {
+        this.mediaList = newData;
         notifyDataSetChanged();
     }
 

@@ -6,15 +6,25 @@
     android:padding="8dp">
 
     <!-- Image with rounded corners -->
-    <ImageView
-        android:id="@+id/itemImage"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="Item image"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/itemImage"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Item image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.cardview.widget.CardView>
 
     <!-- Title -->
     <TextView
@@ -27,7 +37,7 @@
         android:textSize="16sp"
         android:fontFamily="sans-serif-medium"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/itemImage"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Subtitle (Details like genre, duration) -->
@@ -42,7 +52,7 @@
         android:textSize="14sp"
         android:fontFamily="sans-serif"
         app:layout_constraintTop_toBottomOf="@+id/itemTitle"
-        app:layout_constraintStart_toEndOf="@+id/itemImage"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Description (e.g., synopsis) -->
@@ -59,7 +69,7 @@
         android:ellipsize="end"
         android:fontFamily="sans-serif"
         app:layout_constraintTop_toBottomOf="@+id/itemDetails"
-        app:layout_constraintStart_toEndOf="@+id/itemImage"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

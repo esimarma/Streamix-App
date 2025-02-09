@@ -63,4 +63,14 @@ public class MediaRepository {
     public Call<MediaResponse> getTopRatedSeries() {
         return api.getTopRatedSeries();
     }
+
+    public Call<MediaResponse> searchMedia(String query, String mediaType) {
+        if (mediaType.equals("movie")) {
+            return api.searchMedia("movie", query);
+        } else if (mediaType.equals("tv")) {
+            return api.searchMedia("tv", query);
+        } else {
+            throw new IllegalArgumentException("Tipo de mídia inválido: " + mediaType);
+        }
+    }
 }

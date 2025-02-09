@@ -6,6 +6,7 @@ import com.example.app_streamix.models.MediaResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface MediaApi {
 
@@ -26,5 +27,8 @@ public interface MediaApi {
 
     @GET("tv/top_rated")
     Call<MediaResponse> getTopRatedSeries();
+
+    @GET("search/{media_type}")
+    Call<MediaResponse> searchMedia(@Path("media_type") String mediaType, @Query("query") String query);
 
 }

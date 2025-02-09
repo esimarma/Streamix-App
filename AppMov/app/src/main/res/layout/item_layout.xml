@@ -8,7 +8,6 @@
     android:orientation="vertical">
 
     <!-- Placeholder for the item image -->
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,17 +19,28 @@
             android:layout_height="150dp"/>
     </androidx.cardview.widget.CardView>
 
-    <!-- Title text under the image -->
-    <TextView
-        android:id="@+id/itemTextView"
-        android:layout_width="100dp"
+    <!-- Container para o título e o ícone -->
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Item Title"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/itemImage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/itemTextView"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Item Title"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"/>
+
+        <ImageView
+            android:id="@+id/titleIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/lists_black"
+            app:tint="@color/white"/>
+    </LinearLayout>
 
 </LinearLayout>
