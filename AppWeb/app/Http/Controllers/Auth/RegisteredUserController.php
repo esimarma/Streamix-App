@@ -53,28 +53,22 @@ class RegisteredUserController extends Controller
 
     public function storeApi(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
-        $token = $user->createToken('auth_token')->plainTextToken;
+        
+        event(new Registered($user));
 
         return response()->json([
             'message' => 'Usuário cadastrado com sucesso',
-            'token' => $token,
-            'user' => $user
         ]);
     }
 }

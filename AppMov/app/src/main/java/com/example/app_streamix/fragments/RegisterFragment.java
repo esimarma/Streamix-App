@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,21 +116,26 @@ public class RegisterFragment extends Fragment {
     }
 
     private void registerUser(String name, String email, String password) {
-        RegisterRequest registerRequest = new RegisterRequest(name, email, password);
+        RegisterRequest registerRequest = new RegisterRequest(name, email, password, password);
 
         authRepository.register(registerRequest).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Conta criada com sucesso!", Toast.LENGTH_SHORT).show();
-
-                    // Redirecionar para o LoginFragment após o registro
                     requireActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragmentContainer, new LoginFragment())
-                            .commit();
+                            .addToBackStack(null)
+                            .commitAllowingStateLoss();
                 } else {
-                    Toast.makeText(getContext(), "Erro ao criar a conta. Verifique os dados.", Toast.LENGTH_SHORT).show();
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Log.e("RegisterFragment", "Erro ao criar conta: " + errorBody);
+                        Toast.makeText(getContext(), "Erro: " + errorBody, Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Log.e("RegisterFragment", "Erro ao ler resposta de erro", e);
+                    }
                 }
             }
 

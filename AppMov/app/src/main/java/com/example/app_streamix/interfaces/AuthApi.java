@@ -22,5 +22,6 @@ public interface AuthApi {
     Call<User> getUser(@Header("Authorization") String token);
 
     @POST("register")
-    Call<Void> register(@Body RegisterRequest registerRequest);
+    Call<Void> register(@Body RegisterRequest request);
+
 }

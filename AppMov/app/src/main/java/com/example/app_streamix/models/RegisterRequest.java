@@ -1,14 +1,18 @@
 package com.example.app_streamix.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class RegisterRequest {
     private String name;
     private String email;
     private String password;
+    private String password_confirmation;
 
-    public RegisterRequest(String name, String email, String password) {
+    public RegisterRequest(String name, String email, String password, String password_confirmation) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.password_confirmation = password_confirmation;
     }
 
     // Getters e Setters (se necessário)
@@ -29,5 +33,13 @@ public class RegisterRequest {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPassword_confirmation() {
+        return password_confirmation;
+    }
+
+    public void setPassword_confirmation(String password_confirmation) {
+        this.password_confirmation = password_confirmation;
     }
 }
