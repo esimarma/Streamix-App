@@ -1,5 +1,7 @@
 package com.example.app_streamix;
 
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +23,8 @@ import com.example.app_streamix.fragments.SearchFragment;
 import com.example.app_streamix.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageView appIcon, settingsIcon;
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        applySavedLanguage(); // Apply saved language before UI loads
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -147,4 +152,19 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
         hideHeader(); // Hide header when opening Settings
     }
+    private void applySavedLanguage() {
+        SharedPreferences preferences = getSharedPreferences("settings", MODE_PRIVATE);
+        String languageCode = preferences.getString("language_preference", Locale.getDefault().getLanguage());
+
+        setLocale(languageCode); // Apply the saved locale
+    }
+
+    private void setLocale(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+    }
+
 }

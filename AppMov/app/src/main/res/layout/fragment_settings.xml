@@ -10,14 +10,14 @@
     <!-- Back Button -->
     <ImageView
         android:id="@+id/backButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:src="@drawable/left_arrow"
         android:contentDescription="@string/back"
         android:tint="#FFFFFF"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="18dp"
         android:layout_marginStart="16dp"/>
 
     <!-- Title -->
@@ -25,16 +25,16 @@
         android:id="@+id/settingsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/settings_title"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        android:fontFamily="sans-serif-medium"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/backButton"
         app:layout_constraintBottom_toBottomOf="@id/backButton"
-        android:layout_marginStart="16dp"/>
+        app:layout_constraintStart_toEndOf="@id/backButton"
+        app:layout_constraintTop_toTopOf="@id/backButton" />
 
-    <!-- RecyclerView for Settings Options -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/settingsRecyclerView"
         android:layout_width="0dp"
@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:clipToPadding="false"
         android:paddingBottom="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

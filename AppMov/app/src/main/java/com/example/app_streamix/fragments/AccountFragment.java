@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.app_streamix.MainActivity;
 import com.example.app_streamix.R;
+import com.example.app_streamix.models.User;
+import com.example.app_streamix.utils.SessionManager;
 
 public class AccountFragment extends Fragment {
 
@@ -49,6 +51,15 @@ public class AccountFragment extends Fragment {
         editTextEmail = view.findViewById(R.id.editText_email);
         changePassword = view.findViewById(R.id.change_password);
         deleteAccountButton = view.findViewById(R.id.delete_account_button);
+
+        // Fetch user data from session
+        SessionManager sessionManager = new SessionManager(requireContext());
+        User user = sessionManager.getUser();
+
+        if (user != null) {
+            editTextName.setText(user.getName());
+            editTextEmail.setText(user.getEmail());
+        }
 
         // Set back button action
         backButton.setOnClickListener(v -> {
@@ -105,3 +116,4 @@ public class AccountFragment extends Fragment {
         }
     }
 }
+

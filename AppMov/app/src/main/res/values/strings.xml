@@ -4,16 +4,81 @@
 
     <!-- Home Screen -->
     <string name="home_title">Home</string>
+    <string name="explore_more_content">Explore More Content</string>
+    <!-- Home Screen  Categories-->
     <string name="category_popular_movies">Popular Movies</string>
     <string name="category_popular_series">Popular Series</string>
     <string name="category_top_rated_movies">Top-Rated Movies</string>
     <string name="category_top_rated_series">Top-Rated Series</string>
-    <string name="explore_more_content">Explore More Content</string>
 
     <!-- Search Screen -->
     <string name="search_title">Search</string>
+    <string name="hint_title">Title</string>
+    <string name="movies">Movies</string>
+    <string name="series">Series</string>
+    <!-- Search Screen Filter -->
     <string name="apply_filters">Apply Filters</string>
     <string name="remove_filters">Remove Filters</string>
+    <string name="filter_categories">Filter Categories</string>
+    <!-- Filter Categories -->
+    <string name="category_all">All</string>
+    <string name="category_action">Action</string>
+    <string name="category_drama">Drama</string>
+    <string name="category_comedy">Comedy</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="github_option">GitHub Repository</string>
+    <string name="account_option">Account</string>
+    <string name="logout_option">Logout</string>
+    <!-- Settings Language -->
+    <string name="language_option">Language</string>
+    <string name="language_dialog_title">Select Language</string>
+    <string name="language_portuguese">Portuguese</string>
+    <string name="language_english">English</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Profile Screen Titles-->
+    <string name="profile_title">Profile</string>
+    <string name="login">Login</string>
+    <string name="register">Create Account</string>
+    <!-- Profile Screen logged out state-->
+    <string name="warning_message">Oh!</string>
+    <string name="information_message">It looks like you are not logged in yet</string>
+    <string name="login_button">Login</string>
+    <!-- Profile Screen logged in state-->
+    <string name="edit_profile">Edit Profile</string>
+    <!-- Login and Register Screen -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="show_password">Show password</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="back_to_login">Back to Login</string>
+
+    <!-- Account Screen -->
+    <string name="delete_account">Delete Account</string>
+    <string name="delete_account_message">Are you sure you want to delete your account? This action cannot be undone.</string>
+    <!-- ChangePassword Screen -->
+    <string name="change_password">Change Password</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="save_changes">Save Changes</string>
+
+    <!-- Button Descriptions -->
+    <string name="save">Save</string>
+    <string name="back">Back</string>
+
+    <!-- Warnings -->
+    <string name="fill_all_fields">Please fill in all fields</string>
+    <string name="changes_saved">Changes saved successfully!</string>
+    <string name="error_password_mismatch">Passwords do not match!</string>
+    <string name="error_incorrect_password">Incorrect current password!</string>
+    <string name="password_updated">Password updated successfully!</string>
+
+    <!-- Statistics Section -->
+    <string name="statistics_title">Statistics</string>
 
     <!-- Lists Screen -->
     <string name="lists_title">Lists</string>
@@ -23,60 +88,4 @@
     <string name="watching">Watching</string>
     <string name="watched">Watched</string>
     <string name="show_more">Show More</string>
-
-    <!-- Profile Screen -->
-    <string name="profile_title">Profile</string>
-    <string name="login_button">Log In</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="save_changes">Save Changes</string>
-    <string name="email">Email</string>
-    <string name="current_password">Current Password</string>
-    <string name="new_password">New Password</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="error_password_mismatch">Passwords do not match!</string>
-    <string name="error_incorrect_password">Incorrect current password!</string>
-    <string name="success_changes_saved">Changes saved successfully!</string>
-    <string name="mock_username">Mock User</string>
-    <string name="edit_name">Name</string>
-    <string name="edit_email">Email</string>
-
-    <string name="warning_message">Oh!</string>
-    <string name="information_message">It looks like you are not logged in yet</string>
-    <string name="profile_image">User Profile Image</string>
-    <string name="username_placeholder">User Name</string>
-    <string name="email_placeholder">user@example.com</string>
-
-
-
-    <!-- Statistics Section -->
-    <string name="statistics_title">Statistics</string>
-
-
-    <string name="login">Login</string>
-    <string name="register">Register</string>
-    <string name="show_password">Show password</string>
-
-    <!-- Settings Screen -->
-    <string name="settings_title">Settings</string>
-    <!-- Settings Language -->
-    <string name="language_option">Language</string>
-    <string name="language_dialog_title">Select Language</string>
-    <string name="language_portuguese">Portuguese</string>
-    <string name="language_english">English</string>
-    <string name="cancel">Cancel</string>
-
-    <string name="github_option">GitHub Repository</string>
-    <string name="account_option">Account</string>
-    <string name="logout_option">Logout</string>
-
-
-    <string name="back">Back</string>
-    <string name="save">Save</string>
-    <string name="name">Name</string>
-    <string name="change_password">Change Password</string>
-    <string name="delete_account">Delete Account</string>
-    <string name="delete_account_message">Are you sure you want to delete your account? This action cannot be undone.</string>
-    <string name="fill_all_fields">Please fill in all fields</string>
-    <string name="changes_saved">Changes saved successfully!</string>
-    <string name="password_updated">Password updated successfully!</string>
 </resources>
