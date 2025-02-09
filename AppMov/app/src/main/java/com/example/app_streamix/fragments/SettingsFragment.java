@@ -173,8 +173,7 @@ public class SettingsFragment extends Fragment {
     private void restartFragment() {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .detach(this)
-                .attach(this)
+                .replace(R.id.fragmentContainer, new SettingsFragment()) // This forces a reload
                 .commit();
     }
 
@@ -191,4 +190,7 @@ public class SettingsFragment extends Fragment {
                 .replace(R.id.fragmentContainer, new LoginFragment())
                 .commit();
     }
+
+
+
 }
