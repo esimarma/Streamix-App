@@ -179,7 +179,7 @@ public class SettingsFragment extends Fragment {
     }
 
     private void openGitHubRepository() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/example/Streamix"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/esimarma/Streamix-App"));
         startActivity(browserIntent);
     }
 
