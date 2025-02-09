@@ -4,6 +4,11 @@
 
     <!-- Home Screen -->
     <string name="home_title">Home</string>
+    <string name="category_popular_movies">Popular Movies</string>
+    <string name="category_popular_series">Popular Series</string>
+    <string name="category_top_rated_movies">Top-Rated Movies</string>
+    <string name="category_top_rated_series">Top-Rated Series</string>
+    <string name="explore_more_content">Explore More Content</string>
 
     <!-- Search Screen -->
     <string name="search_title">Search</string>
@@ -53,9 +58,18 @@
 
     <!-- Settings Screen -->
     <string name="settings_title">Settings</string>
+    <!-- Settings Language -->
+    <string name="language_option">Language</string>
+    <string name="language_dialog_title">Select Language</string>
+    <string name="language_portuguese">Portuguese</string>
+    <string name="language_english">English</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="github_option">GitHub Repository</string>
+    <string name="account_option">Account</string>
+    <string name="logout_option">Logout</string>
 
 
-    <string name="account_option">Account Settings</string>
     <string name="back">Back</string>
     <string name="save">Save</string>
     <string name="name">Name</string>

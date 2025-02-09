@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Filmes populares"
+                android:text="@string/category_popular_movies"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-medium" />
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Series populares"
+                android:text="@string/category_popular_series"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-medium" />
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Filmes Top-Rated"
+                android:text="@string/category_top_rated_movies"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-medium" />
@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Series Top-Rated"
+                android:text="@string/category_top_rated_series"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-medium" />
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="#2196F3"
-                android:text="Explore mais conteúdo"
+                android:text="@string/explore_more_content"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:fontFamily="sans-serif-medium" />
