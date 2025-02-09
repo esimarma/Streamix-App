@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Laravel\Sanctum\HasApiTokens;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -31,6 +33,16 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(route('users.indexWeb', absolute: false));
     }
 
+
+    public function storeApi(LoginRequest $request)
+    {
+        $request->authenticate();
+
+        return response()->json([
+            'message' => 'Login bem-sucedido',
+        ]);
+    }
+
     /**
      * Destroy an authenticated session.
      */
@@ -44,4 +56,11 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+    public function destroyApi(Request $request)
+{
+    $request->user()->tokens()->delete();
+
+    return response()->json(['message' => 'Logout realizado com sucesso']);
+}
 }

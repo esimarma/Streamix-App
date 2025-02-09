@@ -52,4 +52,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserList::class, 'id_user');
     }
+    
+    public function generateTestToken() {
+        return $this->createToken('test_token')->plainTextToken;
+    }
 }

@@ -12,13 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.app_streamix.R;
+import com.example.app_streamix.utils.SessionManager;
 
 public class ProfileFragment extends Fragment {
 
-    private boolean isLoggedIn = true; // Default to logged-out state
+    private SessionManager sessionManager;
 
     public ProfileFragment() {
-        // Required empty public constructor
+        // Construtor vazio necessário
     }
 
     @Nullable
@@ -26,30 +27,33 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        // Logged-out layout
+        sessionManager = new SessionManager(requireContext()); // Inicializa o SessionManager
+
         View loggedOutLayout = view.findViewById(R.id.loggedOutLayout);
         View loggedInLayout = view.findViewById(R.id.loggedInLayout);
 
-        // Profile components
         TextView userNameText = view.findViewById(R.id.userNameText);
 
-
-        // Buttons
         Button loginButton = view.findViewById(R.id.loginButton);
         Button editProfileButton = view.findViewById(R.id.editUserButton);
+       // Button logoutButton = view.findViewById(R.id.logoutButton); // Botão de Logout
 
-        // Set localized button texts
         loginButton.setText(getString(R.string.login_button));
         editProfileButton.setText(getString(R.string.edit_profile));
 
-        // Show the correct layout based on login state
-        if (isLoggedIn) {
+        // Verifica o estado de login
+        if (sessionManager.isLoggedIn()) {
             showLoggedInLayout(loggedInLayout, loggedOutLayout);
+
+            String userName = sessionManager.getUserName();
+            String userEmail = sessionManager.getUserEmail();
+
+            userNameText.setText("Bem-vindo(a), " + userName + "!");
         } else {
             showLoggedOutLayout(loggedInLayout, loggedOutLayout);
         }
 
-        // Navigate to **LoginFragment** when clicking the login button
+        // Navegar para o LoginFragment
         loginButton.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager()
                     .beginTransaction()
@@ -58,8 +62,14 @@ public class ProfileFragment extends Fragment {
                     .commit();
         });
 
-        // Navigate to AccountFragment when clicking "Edit Profile"
+        // Navegar para o AccountFragment
         editProfileButton.setOnClickListener(v -> navigateToAccountFragment());
+
+        // Lógica de Logout
+       /* logoutButton.setOnClickListener(v -> {
+            sessionManager.logout();
+            showLoggedOutLayout(loggedInLayout, loggedOutLayout);
+        });*/
 
         return view;
     }
@@ -68,7 +78,7 @@ public class ProfileFragment extends Fragment {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, new AccountFragment())
-                .addToBackStack(null) // Ensures back navigation restores the profile screen
+                .addToBackStack(null)
                 .commit();
     }
 
