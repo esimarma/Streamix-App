@@ -11,11 +11,74 @@
     <string name="category_top_rated_series">Séries Top-Rated</string>
     <string name="explore_more_content">Explore mais conteúdo</string>
 
-
     <!-- Search Screen -->
     <string name="search_title">Pesquisar</string>
+    <string name="hint_title">Título</string>
+    <string name="movies">Filmes</string>
+    <string name="series">Séries</string>
+    <!-- Search Screen Filter -->
     <string name="apply_filters">Aplicar Filtros</string>
     <string name="remove_filters">Remover Filtros</string>
+    <string name="filter_categories">Filtrar Categorias</string>
+    <!-- Filter Categories -->
+    <string name="category_all">Todos</string>
+    <string name="category_action">Ação</string>
+    <string name="category_drama">Drama</string>
+    <string name="category_comedy">Comédia</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Configurações</string>
+    <string name="github_option">Repositório do GitHub</string>
+    <string name="account_option">Conta</string>
+    <string name="logout_option">Sair</string>
+    <!-- Settings Language -->
+    <string name="language_option">Idioma</string>
+    <string name="language_dialog_title">Selecione o idioma</string>
+    <string name="language_portuguese">Português</string>
+    <string name="language_english">Inglês</string>
+    <string name="cancel">Cancelar</string>
+
+    <!-- Profile Screen titles-->
+    <string name="profile_title">Perfil</string>
+    <string name="login">Login</string>
+    <string name="register">Criar Conta</string>
+    <!-- Profile Screen logged out state-->
+    <string name="warning_message">Oh!</string>
+    <string name="information_message">Parece que ainda não tem sessão iniciada</string>
+    <string name="login_button">Iniciar Sessão</string>
+    <!-- Profile Screen logged in state-->
+    <string name="edit_profile">Editar Perfil</string>
+    <!-- Login and Register Screen -->
+    <string name="email">E-mail</string>
+    <string name="password">Palavra-passe</string>
+    <string name="show_password">Mostrar palavra-passe</string>
+    <string name="name">Nome</string>
+    <string name="confirm_password">Confirmar Palavra-passe</string>
+    <string name="create_account">Criar Conta</string>
+    <string name="back_to_login">Voltar para Login</string>
+
+    <!-- Account Screen -->
+    <string name="delete_account">Excluir Conta</string>
+    <string name="delete_account_message">Tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita.</string>
+    <!-- ChangePassword Screen -->
+    <string name="change_password">Alterar Palavra-passe</string>
+    <string name="current_password">Palavra-passe Atual</string>
+    <string name="new_password">Nova Palavra-passe</string>
+    <string name="save_changes">Salvar Alterações</string>
+
+    <!-- Button Descriptions -->
+    <string name="back">Voltar</string>
+    <string name="save">Salvar</string>
+
+    <!-- Warnings -->
+    <string name="fill_all_fields">Preencha todos os campos</string>
+    <string name="changes_saved">Alterações salvas com sucesso!</string>
+    <string name="error_password_mismatch">As palavra-passes não coincidem!</string>
+    <string name="error_incorrect_password">Palavra-passe atual incorreta!</string>
+    <string name="password_updated">Palavra-passe alterada com sucesso!</string>
+
+    <!-- Seção de Estatísticas -->
+    <string name="statistics_title">Estatísticas</string>
 
     <!-- Lists Screen -->
     <string name="lists_title">Listas</string>
@@ -25,59 +88,4 @@
     <string name="watching">A Ver</string>
     <string name="watched">Vistos</string>
     <string name="show_more">Mostrar Mais</string>
-
-    <!-- Profile Screen -->
-    <string name="profile_title">Perfil</string>
-    <string name="login_button">Iniciar Sessão</string>
-    <string name="edit_profile">Editar Perfil</string>
-    <string name="save_changes">Salvar Alterações</string>
-    <string name="email">E-mail</string>
-    <string name="current_password">Senha Atual</string>
-    <string name="new_password">Nova Senha</string>
-    <string name="confirm_password">Confirmar Senha</string>
-    <string name="error_password_mismatch">As senhas não coincidem!</string>
-    <string name="error_incorrect_password">Senha atual incorreta!</string>
-    <string name="success_changes_saved">Alterações salvas com sucesso!</string>
-    <string name="mock_username">Usuário de Teste</string>
-    <string name="edit_name">Nome</string>
-    <string name="edit_email">E-mail</string>
-
-    <string name="login">Login</string>
-    <string name="register">Register</string>
-    <string name="show_password">Mostrar palavra-passe</string>
-
-    <string name="warning_message">Oh!</string>
-    <string name="information_message">Parece que ainda não tem sessão iniciada</string>
-    <string name="profile_image">Imagem do Perfil</string>
-    <string name="username_placeholder">Nome do Usuário</string>
-    <string name="email_placeholder">user@example.com</string>
-
-
-    <!-- Seção de Estatísticas -->
-    <string name="statistics_title">Estatísticas</string>
-
-    <!-- Settings Screen -->
-    <string name="settings_title">Configurações</string>
-    <!-- Settings Language -->
-    <string name="language_option">Idioma</string>
-    <string name="language_dialog_title">Selecione o idioma</string>
-    <string name="language_portuguese">Português</string>
-    <string name="language_english">Inglês</string>
-    <string name="cancel">Cancelar</string>
-
-    <string name="github_option">Repositório do GitHub</string>
-    <string name="account_option">Conta</string>
-    <string name="logout_option">Sair</string>
-
-
-
-    <string name="back">Voltar</string>
-    <string name="save">Salvar</string>
-    <string name="name">Nome</string>
-    <string name="change_password">Alterar Senha</string>
-    <string name="delete_account">Excluir Conta</string>
-    <string name="delete_account_message">Tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita.</string>
-    <string name="fill_all_fields">Preencha todos os campos</string>
-    <string name="changes_saved">Alterações salvas com sucesso!</string>
-    <string name="password_updated">Palavra-passe alterada com sucesso!</string>
 </resources>

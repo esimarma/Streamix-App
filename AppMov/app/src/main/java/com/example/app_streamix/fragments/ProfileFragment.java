@@ -93,14 +93,9 @@ public class ProfileFragment extends Fragment {
         });
 
         // Botão de editar perfil leva ao AccountFragment
-        //editProfileButton.setOnClickListener(v -> navigateToAccountFragment());
+        editProfileButton.setOnClickListener(v -> navigateToAccountFragment());
 
-        Button logoutButton = view.findViewById(R.id.editUserButton);
 
-        logoutButton.setOnClickListener(v -> {
-            sessionManager.logout();  // Limpa os dados salvos
-            showLoggedOutLayout(loggedInLayout, loggedOutLayout);
-        });
 
         return view;
     }
@@ -116,6 +111,17 @@ public class ProfileFragment extends Fragment {
                 .addToBackStack(null)
                 .commit();
     }
+
+    public void onResume() {
+        super.onResume();
+
+        // Ensure the header is visible when coming back to Profile
+        View topHeader = requireActivity().findViewById(R.id.top_header);
+        if (topHeader != null) {
+            topHeader.setVisibility(View.VISIBLE);
+        }
+    }
+
 
     private void showLoggedInLayout(View loggedInLayout, View loggedOutLayout) {
         loggedOutLayout.setVisibility(View.GONE);

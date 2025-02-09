@@ -190,7 +190,4 @@ public class SettingsFragment extends Fragment {
                 .replace(R.id.fragmentContainer, new LoginFragment())
                 .commit();
     }
-
-
-
 }

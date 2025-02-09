@@ -39,11 +39,17 @@ public class FilterFragment extends BottomSheetDialogFragment {
         Button applyFiltersButton = view.findViewById(R.id.btn_apply_filters);
         Button removeFiltersButton = view.findViewById(R.id.btn_remove_filters);
 
-        // Set up the spinner with category options
-        String[] categories = {"All", "Ação", "Drama", "Comédia"};
+        // Set up the spinner with category options using string resources
+        String[] categories = {
+                getString(R.string.category_all),
+                getString(R.string.category_action),
+                getString(R.string.category_drama),
+                getString(R.string.category_comedy)
+        };
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_selected_item, categories);
-        adapter.setDropDownViewResource(R.layout.spinner_item); // Apply custom layout for dropdown items
+        adapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerCategories.setAdapter(adapter);
+
 
 
         // Ensure spinner selection is detected
@@ -51,7 +57,6 @@ public class FilterFragment extends BottomSheetDialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCategory = parent.getItemAtPosition(position).toString();
-                Toast.makeText(requireContext(), "Selected: " + selectedCategory, Toast.LENGTH_SHORT).show();
             }
 
             @Override

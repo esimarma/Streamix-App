@@ -71,8 +71,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
             <!-- Profile Picture -->
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/profile_picture"
@@ -91,26 +89,31 @@
                 android:id="@+id/textView_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:text="@string/name"
-                android:textStyle="bold"
+                android:textColor="@color/white"
                 android:textSize="16sp"
-                android:layout_marginTop="30dp" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editText_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/edit_name"
+                android:hint="@string/name"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:padding="12dp"
-                android:backgroundTint="@color/white" />
+                android:backgroundTint="@color/white"
+                android:focusable="false"
+                android:clickable="false"
+                android:cursorVisible="false" />
 
             <TextView
                 android:id="@+id/textView_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp" />
@@ -123,7 +126,10 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:padding="12dp"
-                android:backgroundTint="@color/white" />
+                android:backgroundTint="@color/white"
+                android:focusable="false"
+                android:clickable="false"
+                android:cursorVisible="false" />
 
             <!-- Change Password -->
             <TextView
@@ -168,3 +174,4 @@
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
