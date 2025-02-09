@@ -23,7 +23,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-Route::apiResource('user/list', UserController::class)->except([
+
+Route::apiResource('user', UserController::class)->except([
     'create', 'edit'
 ]);
 

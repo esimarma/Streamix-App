@@ -1,5 +1,9 @@
 package com.example.app_streamix.models;
 
+import androidx.annotation.ArrayRes;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,7 +13,9 @@ public class User {
     private String name;
     private String email;
     private String password;
+    @SerializedName("series_wasted_time_min")
     private Integer seriesWastedTimeMin;
+    @SerializedName("movie_wasted_time_min")
     private Integer movieWastedTimeMin;
     private LocalDateTime emailVerifiedAt;
     private List<UserList> lists;

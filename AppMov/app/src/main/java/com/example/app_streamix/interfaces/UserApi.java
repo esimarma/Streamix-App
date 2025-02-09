@@ -1,6 +1,7 @@
 package com.example.app_streamix.interfaces;
 
 
+import com.example.app_streamix.models.ApiResponse;
 import com.example.app_streamix.models.User;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface UserApi {
     Call<List<User>> getUser();
 
     @GET("user/{id}")
-    Call<User> getUserById(@Path("id") Long id);
+    Call<ApiResponse<User>> getUserById(@Path("id") Long id);
 
     /*@PUT("user/{id}")
     Call<User> updateUser(@Path("id") Long id, @Body User listMedia);

@@ -183,6 +183,7 @@
                 app:layout_constraintEnd_toStartOf="@id/statHours2">
 
                 <TextView
+                    android:id="@+id/moviesHoursText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"

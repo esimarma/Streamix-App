@@ -22,6 +22,7 @@ import com.example.app_streamix.R;
 
 import com.example.app_streamix.models.LoginRequest;
 import com.example.app_streamix.models.LoginResponse;
+import com.example.app_streamix.models.User;
 import com.example.app_streamix.repositories.AuthRepository;
 import com.example.app_streamix.utils.SessionManager;
 
@@ -106,19 +107,14 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    String token = response.body().getToken();
-
-                    Long id = response.body().getUser().getId();
-                    String userName = response.body().getUser().getName();
-                    String userEmail = response.body().getUser().getEmail();
-                    Integer movieWastedTime = response.body().getUser().getMovieWastedTimeMin();
-                    Integer seriesWastedTime = response.body().getUser().getSeriesWastedTimeMin();
+                    User user = response.body().getUser();  // Supondo que a API retorna um objeto `User`
 
                     Toast.makeText(getContext(), "Login bem-sucedido!", Toast.LENGTH_SHORT).show();
 
-                    // ✅ Armazena os dados do usuário na sessão
+                    // Salva os dados no SessionManager para manter o login persistente
+                    SessionManager sessionManager = new SessionManager(requireContext());
                     sessionManager.setLoggedIn(true);
-                    sessionManager.setUserData(id, userName, userEmail, movieWastedTime, seriesWastedTime);
+                    sessionManager.setUser(user);
 
                     // Redireciona para o ProfileFragment
                     ProfileFragment profileFragment = new ProfileFragment();

@@ -1,6 +1,7 @@
 package com.example.app_streamix.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.app_streamix.R;
+import com.example.app_streamix.models.ApiResponse;
+import com.example.app_streamix.models.User;
+import com.example.app_streamix.repositories.UserRepository;
 import com.example.app_streamix.utils.SessionManager;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
 
@@ -33,27 +43,47 @@ public class ProfileFragment extends Fragment {
         View loggedInLayout = view.findViewById(R.id.loggedInLayout);
 
         TextView userNameText = view.findViewById(R.id.userNameText);
+        TextView moviesHoursText = view.findViewById(R.id.moviesHoursText);
 
         Button loginButton = view.findViewById(R.id.loginButton);
         Button editProfileButton = view.findViewById(R.id.editUserButton);
-       // Button logoutButton = view.findViewById(R.id.logoutButton); // Botão de Logout
+
+        UserRepository userRepository = new UserRepository();
 
         loginButton.setText(getString(R.string.login_button));
         editProfileButton.setText(getString(R.string.edit_profile));
 
-        // Verifica o estado de login
         if (sessionManager.isLoggedIn()) {
             showLoggedInLayout(loggedInLayout, loggedOutLayout);
 
-            String userName = sessionManager.getUserName();
-            String userEmail = sessionManager.getUserEmail();
+            User user = sessionManager.getUser();
+            if (user != null) {
+                userRepository.getUserById(user.getId()).enqueue(new Callback<ApiResponse <User>>() {
+                    @Override
+                    public void onResponse(Call<ApiResponse<User>> call, Response<ApiResponse<User>> response) {
+                        if (response.isSuccessful()) {
+                            User userResponse = response.body().getData();
+                            if (userResponse != null) {
+                                userNameText.setText("Bem-vindo(a), " + userResponse.getName() + "!");
+                                moviesHoursText.setText(hoursToMinutes(userResponse.getMovieWastedTimeMin()) + "h de filmes");
+                            }
+                        }
+                    }
 
-            userNameText.setText("Bem-vindo(a), " + userName + "!");
+                    @Override
+                    public void onFailure(Call<ApiResponse<User>> call, Throwable t) {
+                        Log.d("ProfileFragment", "Erro ao buscar usuário: " + t.getMessage());
+                    }
+
+                });
+                } else {
+                    userNameText.setText("Bem-vindo(a)!");
+                }
         } else {
             showLoggedOutLayout(loggedInLayout, loggedOutLayout);
         }
 
-        // Navegar para o LoginFragment
+        // Botão de login leva ao LoginFragment
         loginButton.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager()
                     .beginTransaction()
@@ -62,16 +92,21 @@ public class ProfileFragment extends Fragment {
                     .commit();
         });
 
-        // Navegar para o AccountFragment
-        editProfileButton.setOnClickListener(v -> navigateToAccountFragment());
+        // Botão de editar perfil leva ao AccountFragment
+        //editProfileButton.setOnClickListener(v -> navigateToAccountFragment());
 
-        // Lógica de Logout
-       /* logoutButton.setOnClickListener(v -> {
-            sessionManager.logout();
+        Button logoutButton = view.findViewById(R.id.editUserButton);
+
+        logoutButton.setOnClickListener(v -> {
+            sessionManager.logout();  // Limpa os dados salvos
             showLoggedOutLayout(loggedInLayout, loggedOutLayout);
-        });*/
+        });
 
         return view;
+    }
+
+    private double hoursToMinutes(int min) {
+        return Double.parseDouble(String.format("%.2f", min / 60.0));
     }
 
     private void navigateToAccountFragment() {

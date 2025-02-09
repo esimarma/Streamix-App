@@ -40,6 +40,7 @@ class AuthenticatedSessionController extends Controller
 
         return response()->json([
             'message' => 'Login bem-sucedido',
+            'user' => $request->user(),
         ]);
     }
 
