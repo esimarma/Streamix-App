@@ -92,4 +92,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             itemImage = itemView.findViewById(R.id.itemImage);
         }
     }
+    public void addItem(Media media) {
+        mediaList.add(media);
+        notifyItemInserted(mediaList.size() - 1);
+    }
 }

@@ -8,6 +8,9 @@ public class MediaResponse {
     private int total_pages;
     private int total_results;
 
+    public MediaResponse() {
+    }
+
     public MediaResponse(int page, List<Media> results, int total_pages, int total_results) {
         this.page = page;
         this.results = results;

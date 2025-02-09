@@ -1,14 +1,19 @@
 package com.example.app_streamix.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class UserList {
 
     private Long id;
-    private User user;
+    @SerializedName("id_user")
+    private Long userId;
     private String name;
+    @SerializedName("list_type")
     private String listType;
     private List<ListMedia> listMedia;
+    private User user;
 
     // Getters and Setters
     public Long getId() {
@@ -17,6 +22,12 @@ public class UserList {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public Long getUserId() {
+        return userId;
+    }
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public User getUser() {

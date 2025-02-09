@@ -152,6 +152,17 @@ class ListMediaController extends Controller
       return new ListMediaResource($listMedias);
    }
 
+   public function getByUserListId(string $userListId)
+   {
+       $listMedias = ListMedia::where('id_list_user', $userListId)->get();
+   
+       if ($listMedias->isEmpty()) {
+           return response()->json(['message' => 'Nenhuma mídia encontrada para este usuário.'], 404);
+       }
+   
+       return ListMediaResource::collection($listMedias);
+   }
+
    /*
    * Show the form for editing the specified resource.
    */

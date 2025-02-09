@@ -2,6 +2,7 @@ package com.example.app_streamix.repositories;
 
 
 import com.example.app_streamix.interfaces.UserListApi;
+import com.example.app_streamix.models.ApiResponse;
 import com.example.app_streamix.models.UserList;
 import com.example.app_streamix.utils.ApiConstants;
 
@@ -36,6 +37,10 @@ public class UserListRepository {
 
     public Call<UserList> getUserListById(Long id) {
         return userListApi.getUserListById(id);
+    }
+
+    public Call<ApiResponse<UserList>> getByListType(String listType, Long userId) {
+        return userListApi.getByListType(listType, userId);
     }
 
     public Call<UserList> updateUserList(Long id, UserList userList) {

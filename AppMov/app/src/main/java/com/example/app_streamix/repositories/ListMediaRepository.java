@@ -1,6 +1,7 @@
 package com.example.app_streamix.repositories;
 
 import com.example.app_streamix.interfaces.ListMediaApi;
+import com.example.app_streamix.models.ApiResponse;
 import com.example.app_streamix.models.ListMedia;
 import com.example.app_streamix.utils.ApiConstants;
 
@@ -36,6 +37,11 @@ public class ListMediaRepository {
     public Call<ListMedia> getListMediaById(Long id) {
         return listMediaApi.getListMediaById(id);
     }
+
+    public Call<ApiResponse<List<ListMedia>>> getByUserListId(Long id) {
+        return listMediaApi.getByUserListId(id);
+    }
+
 
     public Call<ListMedia> updateListMedia(Long id, ListMedia listMedia) {
         return listMediaApi.updateListMedia(id, listMedia);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserList;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB; 
 
 class RegisteredUserController extends Controller
 {
@@ -49,8 +50,6 @@ class RegisteredUserController extends Controller
         return redirect(route('users.indexWeb', absolute: false));
     }
 
-
-
     public function storeApi(Request $request)
     {
         $request->validate([
@@ -59,16 +58,33 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-        
-        event(new Registered($user));
+        DB::transaction(function () use ($request) {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+
+            // Criando listas padrão com os tipos corretos
+            $defaultLists = [
+                ['name' => 'Vistos', 'list_type' => 'visto'],
+                ['name' => 'Favoritos', 'list_type' => 'favorito'],
+                ['name' => 'Para Ver', 'list_type' => 'watchlist'],
+            ];
+
+            foreach ($defaultLists as $list) {
+                UserList::create([
+                    'id_user' => $user->id, 
+                    'name' => $list['name'],
+                    'list_type' => $list['list_type'],
+                ]);
+            }
+
+            event(new Registered($user));
+        });
 
         return response()->json([
-            'message' => 'Usuário cadastrado com sucesso',
+            'message' => 'Usuário cadastrado com sucesso e listas padrão criadas!',
         ]);
     }
 }

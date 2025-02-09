@@ -30,10 +30,12 @@ Route::apiResource('user', UserController::class)->except([
 
 Route::get('/userList/{userId}/lists', [UserListController::class, 'getByUser']);
 
+Route::get('/user-lists/type/{listType}/{userId}', [UserListController::class, 'getByListType']);
 Route::apiResource('userList', UserListController::class)->except([
     'create', 'edit'
 ]);
 
+Route::get('/list-media/userList/{userListId}', [ListMediaController::class, 'getByUserListId']);
 Route::apiResource('listMedia', ListMediaController::class)->except([
     'create', 'edit'
 ]);

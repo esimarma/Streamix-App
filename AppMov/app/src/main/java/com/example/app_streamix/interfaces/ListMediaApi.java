@@ -2,6 +2,8 @@ package com.example.app_streamix.interfaces;
 
 
 import java.util.List;
+
+import com.example.app_streamix.models.ApiResponse;
 import com.example.app_streamix.models.ListMedia;
 
 import retrofit2.Call;
@@ -21,6 +23,9 @@ public interface ListMediaApi {
 
     @GET("listMedia/{id}")
     Call<ListMedia> getListMediaById(@Path("id") Long id);
+
+    @GET("list-media/userList/{user_list_id}")
+    Call<ApiResponse<List<ListMedia>>> getByUserListId(@Path("user_list_id") Long id);
 
     @PUT("listMedia/{id}")
     Call<ListMedia> updateListMedia(@Path("id") Long id, @Body ListMedia listMedia);

@@ -1,6 +1,8 @@
 package com.example.app_streamix.interfaces;
 
 import java.util.List;
+
+import com.example.app_streamix.models.ApiResponse;
 import com.example.app_streamix.models.UserList;
 
 import retrofit2.Call;
@@ -20,6 +22,9 @@ public interface UserListApi {
 
     @GET("userList/{id}")
     Call<UserList> getUserListById(@Path("id") Long id);
+
+    @GET("user-lists/type/{listType}/{userId}")
+    Call<ApiResponse<UserList>> getByListType(@Path("listType") String listType, @Path("userId") Long userId);
 
     @PUT("userList/{id}")
     Call<UserList> updateUserList(@Path("id") Long id, @Body UserList listMedia);

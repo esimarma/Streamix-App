@@ -79,6 +79,19 @@ class UserListController extends Controller
         return new UserListResource($userList);
     }
 
+    public function getByListType($listType, $userId)
+    {
+        $userList = UserList::where('list_type', $listType)
+                            ->where('id_user', $userId)
+                            ->first();
+
+        if (!$userList) {
+            return response()->json(['message' => 'Nenhuma lista encontrada para este tipo e usuário.'], 404);
+        }
+
+        return new UserListResource($userList);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
