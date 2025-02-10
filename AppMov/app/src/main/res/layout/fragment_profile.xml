@@ -142,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="X Filmes"
+                    android:text="@string/n_movies"
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold"/>
@@ -163,7 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="X Séries"
+                    android:text="@string/n_series"
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold"/>
@@ -184,7 +184,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="X Horas"
+                    android:text="@string/h_movies"
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold"/>

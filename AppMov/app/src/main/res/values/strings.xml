@@ -79,6 +79,10 @@
 
     <!-- Statistics Section -->
     <string name="statistics_title">Statistics</string>
+    <string name="n_movies">X movies</string>
+    <string name="n_series">X series</string>
+    <string name="h_movies">H movies</string>
+
 
     <!-- Lists Screen -->
     <string name="lists_title">Lists</string>

@@ -79,6 +79,9 @@
 
     <!-- Seção de Estatísticas -->
     <string name="statistics_title">Estatísticas</string>
+    <string name="n_movies">X filmes</string>
+    <string name="n_series">X series</string>
+    <string name="h_movies">H filmes</string>
 
     <!-- Lists Screen -->
     <string name="lists_title">Listas</string>
