@@ -7,10 +7,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.app_streamix.R;
+import com.example.app_streamix.fragments.MovieDetailsFragment;
+import com.example.app_streamix.fragments.SeriesDetailsFragment;
 import com.example.app_streamix.models.Media;
 import com.example.app_streamix.repositories.MediaRepository;
 import com.example.app_streamix.utils.ApiConstants;
@@ -41,12 +44,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Media media = mediaList.get(position);
-        String mediaType = "";
-        if(media.getName() == null) {
-            mediaType = "movie";
-        } else {
-            mediaType = "tv";
-        }
+        String mediaType = (media.getName() == null) ? "movie" : "tv";
 
         mediaRepository.getMediaById(media.getId(), mediaType).enqueue(new Callback<Media>() {
             @Override
@@ -54,23 +52,43 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 if (response.isSuccessful() && response.body() != null) {
                     Media mediaResponse = response.body();
 
-                    // Define o título ou nome caso o título seja nulo
+                    // Set title
                     if (mediaResponse.getTitle() == null) {
                         holder.itemTitle.setText(mediaResponse.getName());
                     } else {
                         holder.itemTitle.setText(mediaResponse.getTitle());
                     }
-                    // Busca a imagem do filme na API
-                    String imageUrl = ApiConstants.BASE_URL_IMAGE + mediaResponse.getPosterPath();
 
-                    // Usa Glide para carregar a imagem no ImageView
+                    // Load movie poster
+                    String imageUrl = ApiConstants.BASE_URL_IMAGE + mediaResponse.getPosterPath();
                     Glide.with(holder.itemView.getContext())
                             .load(imageUrl)
                             .into(holder.itemImage);
 
                     holder.itemDetails.setText("Ano - Gênero - Duração");
-
                     holder.itemDescription.setText(mediaResponse.getOverview());
+
+                    // ADD CLICK LISTENER HERE
+                    holder.itemView.setOnClickListener(v -> {
+                        FragmentActivity activity = (FragmentActivity) holder.itemView.getContext();
+                        if (mediaType.equals("movie")) {
+                            // Open Movie Details
+                            MovieDetailsFragment movieDetailsFragment = MovieDetailsFragment.newInstance(media.getId());
+                            activity.getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fragmentContainer, movieDetailsFragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                        } else if (mediaType.equals("tv")) {
+                            // Open Series Details
+                            SeriesDetailsFragment seriesDetailsFragment = SeriesDetailsFragment.newInstance(media.getId());
+                            activity.getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fragmentContainer, seriesDetailsFragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                        }
+                    });
                 }
             }
 
@@ -80,6 +98,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
