@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -12,7 +13,7 @@
         android:padding="16dp">
 
         <!-- Back Button & Menu -->
-        <RelativeLayout
+        <!-- <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -21,60 +22,73 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/left_arrow"
-                android:tint="@color/white"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true"
+                app:tint="@color/white" />
 
-            <ImageView
+           <ImageView
                 android:id="@+id/menuButton"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_settings"
-                android:tint="@color/white"
-                android:layout_alignParentEnd="true"/>
-        </RelativeLayout>
+                android:layout_alignParentEnd="true"
+                app:tint="@color/white" />
+        </RelativeLayout>-->
 
         <!-- Movie Poster -->
-        <ImageView
-            android:id="@+id/moviePoster"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/book_cover_trigun"/>
-
-        <!-- Movie Title & Favorite Button -->
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp">
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/moviePoster"
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"/>
 
-            <TextView
-                android:id="@+id/movieTitle"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Titulo Filme #1"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_alignParentStart="true"/>
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/favoriteButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_not_watched"
-                android:tint="@color/white"
-                android:layout_alignParentEnd="true"/>
-        </RelativeLayout>
+                <!-- Movie Title & Favorite Button -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:orientation="horizontal">
 
-        <!-- Movie Metadata -->
-        <TextView
-            android:id="@+id/movieMetadata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ano • Gênero • Duração • Rating"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:paddingTop="4dp"/>
+                    <TextView
+                        android:id="@+id/movieTitle"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:text="Titulo Filme #1"
+                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:id="@+id/favoriteButton"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/lists_black"
+                        app:tint="@color/white" />
+                </LinearLayout>
+
+                <!-- Movie Metadata -->
+                <TextView
+                    android:id="@+id/movieMetadata"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ano • Gênero • Duração • Rating"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
 
         <!-- Divider -->
         <View
@@ -85,16 +99,16 @@
 
         <!-- About Section -->
         <TextView
-            android:id="@+id/aboutTitle"
+            android:id="@+id/synopsisTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sobre"
+            android:text="Sinopse sobre o filme:"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
 
         <!-- Available Platforms -->
-        <TextView
+        <!--<TextView
             android:id="@+id/platformsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,17 +124,17 @@
             android:text="Netflix, Prime Video"
             android:textSize="14sp"
             android:textColor="@color/white"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp"/>-->
 
         <!-- Movie Synopsis -->
-        <TextView
+       <!-- <TextView
             android:id="@+id/synopsisTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sinopse sobre o filme:"
             android:textSize="14sp"
             android:textColor="@color/white"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"/>-->
 
         <TextView
             android:id="@+id/movieSynopsis"
@@ -132,7 +146,7 @@
             android:layout_marginTop="4dp"/>
 
         <!-- Cast Section -->
-        <RelativeLayout
+       <!-- <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp">
@@ -155,10 +169,10 @@
                 android:textSize="14sp"
                 android:textColor="@color/white"
                 android:layout_alignParentEnd="true"/>
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         <!-- Cast List -->
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/castContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -224,7 +238,7 @@
                     android:textSize="12sp"
                     android:textColor="@color/white"/>
             </LinearLayout>
-        </LinearLayout>
+        </LinearLayout>-->
 
     </LinearLayout>
 </ScrollView>

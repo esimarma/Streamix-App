@@ -13,7 +13,7 @@
         android:padding="16dp">
 
         <!-- Back Button & Menu -->
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -32,50 +32,66 @@
                 android:src="@drawable/ic_settings"
                 android:tint="@color/white"
                 android:layout_alignParentEnd="true"/>
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         <!-- Series Poster -->
-        <ImageView
-            android:id="@+id/seriesPoster"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/book_cover_trigun"/>
-
-        <!-- Series Title & Favorite Button -->
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp">
-
-            <TextView
-                android:id="@+id/seriesTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Título Série #1"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_alignParentStart="true"/>
+            android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/favoriteButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_not_watched"
-                android:tint="@color/white"
-                android:layout_alignParentEnd="true"/>
-        </RelativeLayout>
+                android:id="@+id/seriesPoster"
+                android:layout_width="150dp"
+                android:layout_height="300dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"/>
 
-        <!-- Series Metadata -->
-        <TextView
-            android:id="@+id/seriesMetadata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ano • Gênero • Duração • Rating • Número de Temporadas"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:paddingTop="4dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Series Title & Favorite Button -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/seriesTitle"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:text="Título Série #1"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+
+                    <ImageView
+                        android:id="@+id/favoriteButton"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/lists_black"
+                        app:tint="@color/white" />
+
+                </LinearLayout>
+
+                <!-- Series Metadata -->
+                <TextView
+                    android:id="@+id/seriesMetadata"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ano • Gênero • Duração • Rating • Número de Temporadas"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:paddingTop="4dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
 
         <!-- Tab Layout (Sobre | Episódios) -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -129,7 +145,7 @@
                 android:orientation="vertical"
                 android:visibility="visible">
 
-                <TextView
+               <!-- <TextView
                     android:id="@+id/platformsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -145,15 +161,16 @@
                     android:text="Netflix, Prime Video"
                     android:textSize="14sp"
                     android:textColor="@color/white"
-                    android:layout_marginTop="2dp"/>
+                    android:layout_marginTop="2dp"/>-->
 
                 <TextView
                     android:id="@+id/synopsisTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sinopse sobre a série:"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:layout_marginTop="8dp"/>
 
                 <TextView

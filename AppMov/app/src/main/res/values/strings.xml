@@ -92,4 +92,6 @@
     <string name="choose_list">Choose the list you want to add to:</string>
     <string name="confirm">Confirm</string>
     <string name="favorites">Favorite</string>
+
+    <string name="details_title">Details</string>
 </resources>

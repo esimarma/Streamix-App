@@ -65,7 +65,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                             .load(imageUrl)
                             .into(holder.itemImage);
 
-                    holder.itemDetails.setText("Ano - Gênero - Duração");
+
+                    String releaseDate = (mediaResponse.getReleaseDate() != null) ? mediaResponse.getReleaseDate() : mediaResponse.getFirstAirDate();
+                    holder.itemDetails.setText(releaseDate + " • " + mediaResponse.getVoteAverage() + "/10");
                     holder.itemDescription.setText(mediaResponse.getOverview());
 
                     // ADD CLICK LISTENER HERE

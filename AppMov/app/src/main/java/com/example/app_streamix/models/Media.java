@@ -13,13 +13,14 @@ public class Media {
     private Integer vote_count;
     private Integer runtime;
     private String release_date;
+    private String first_air_date;
     private List<Genre> genres;
     private Integer number_of_episodes;
     private Integer number_of_seasons;
     private String MediaType;
 
     public Media(Integer id, Boolean adult, String overview, String posterPath, String title, String name,
-                 Double voteAverage, Integer voteCount, Integer runtime, String releaseDate, List<Genre> genres,
+                 Double voteAverage, Integer voteCount, Integer runtime, String releaseDate, String firstAirDate, List<Genre> genres,
                  Integer numberOfEpisodes, Integer numberOfSeasons, String mediaType) {
         this.id = id;
         this.adult = adult;
@@ -36,6 +37,7 @@ public class Media {
         this.vote_count = voteCount;
         this.runtime = runtime;
         this.release_date = releaseDate;
+        this.first_air_date = firstAirDate;
         this.genres = genres;
         this.number_of_episodes = numberOfEpisodes;
         this.number_of_seasons = numberOfSeasons;
@@ -122,6 +124,14 @@ public class Media {
     public void setReleaseDate(String releaseDate) {
         this.release_date = releaseDate;
     }
+    public String getFirstAirDate() {
+        return first_air_date;
+    }
+
+    public void setFirstAirDate(String firstAirDate) {
+        this.first_air_date = firstAirDate;
+    }
+
 
     public List<Genre> getGenres() {
         return genres;

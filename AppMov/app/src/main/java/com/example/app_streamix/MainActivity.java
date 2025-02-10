@@ -17,9 +17,11 @@ import com.example.app_streamix.fragments.ChangePasswordFragment;
 import com.example.app_streamix.fragments.HomeFragment;
 import com.example.app_streamix.fragments.ListsFragment;
 import com.example.app_streamix.fragments.LoginFragment;
+import com.example.app_streamix.fragments.MovieDetailsFragment;
 import com.example.app_streamix.fragments.ProfileFragment;
 import com.example.app_streamix.fragments.RegisterFragment;
 import com.example.app_streamix.fragments.SearchFragment;
+import com.example.app_streamix.fragments.SeriesDetailsFragment;
 import com.example.app_streamix.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -109,8 +111,13 @@ public class MainActivity extends AppCompatActivity {
                 headerTitle.setText(getString(R.string.search_title));
             } else if (fragment instanceof ListsFragment) {
                 headerTitle.setText(getString(R.string.lists_title));
+                settingsIcon.setVisibility(View.VISIBLE);
+                appIcon.setVisibility(View.VISIBLE);
             } else if (fragment instanceof ProfileFragment) {
                 headerTitle.setText(getString(R.string.profile_title));
+                settingsIcon.setVisibility(View.VISIBLE);
+            } else if (fragment instanceof MovieDetailsFragment || fragment instanceof SeriesDetailsFragment) {
+                headerTitle.setText(getString(R.string.details_title));
                 settingsIcon.setVisibility(View.VISIBLE);
             }
         }

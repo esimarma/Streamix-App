@@ -101,7 +101,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private double hoursToMinutes(int min) {
-        return Double.parseDouble(String.format("%.2f", min / 60.0));
+        return Math.round((min / 60.0) * 100.0) / 100.0; // Arredonda para 2 casas decimais
     }
 
     private void navigateToAccountFragment() {

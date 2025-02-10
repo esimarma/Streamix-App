@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Ano - Gênero - Duração"
+        android:text="Ano"
         android:textColor="#AAAAAA"
         android:textSize="14sp"
         android:fontFamily="sans-serif"
