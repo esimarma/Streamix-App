@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,7 @@ import com.example.app_streamix.utils.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -148,27 +150,88 @@ public class SeriesDetailsFragment extends Fragment {
                 context.getString(R.string.favorites)
         };
 
-        boolean[] selectedItems = {false, false, false};
+        List<String> availableLists = new ArrayList<>();
+        List<String> listTypes = List.of("watchlist", "visto", "favorito");
+
+        AtomicInteger pendingRequests = new AtomicInteger(listTypes.size());
+
+        for (int i = 0; i < listTypes.size(); i++) {
+            String listType = listTypes.get(i);
+            String option = options[i];
+
+            userListRepository.getByListType(listType, user.getId()).enqueue(new Callback<ApiResponse<UserList>>() {
+                @Override
+                public void onResponse(Call<ApiResponse<UserList>> call, Response<ApiResponse<UserList>> response) {
+                    if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
+                        UserList userList = response.body().getData();
+                        listMediaRepository.getByUserListId(userList.getId()).enqueue(new Callback<ApiResponse<List<ListMedia>>>() {
+                            @Override
+                            public void onResponse(Call<ApiResponse<List<ListMedia>>> call, Response<ApiResponse<List<ListMedia>>> response) {
+                                boolean isInList = false;
+                                if (response.body() != null) {
+                                    for (ListMedia listMedia : response.body().getData()) {
+                                        if (listMedia.getIdMedia().intValue() == media.getId().intValue()) {
+                                            isInList = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (!isInList) {
+                                    availableLists.add(option); // Adiciona somente se não estiver na lista
+                                }
+                                if (pendingRequests.decrementAndGet() == 0) {
+                                    displayAddDialog(context, media, availableLists);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ApiResponse<List<ListMedia>>> call, Throwable t) {
+                                if (pendingRequests.decrementAndGet() == 0) {
+                                    displayAddDialog(context, media, availableLists);
+                                }
+                            }
+                        });
+                    } else {
+                        if (pendingRequests.decrementAndGet() == 0) {
+                            displayAddDialog(context, media, availableLists);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ApiResponse<UserList>> call, Throwable t) {
+                    if (pendingRequests.decrementAndGet() == 0) {
+                        displayAddDialog(context, media, availableLists);
+                    }
+                }
+            });
+        }
+    }
+    private void displayAddDialog(Context context, Media media, List<String> availableLists) {
+        if (availableLists.isEmpty()) {
+            Toast.makeText(context, "Esta mídia já está em todas as listas.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        boolean[] selectedItems = new boolean[availableLists.size()];
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View titleView = inflater.inflate(R.layout.custom_dialog_title, null);
         TextView titleTextView = titleView.findViewById(R.id.customDialogTitle);
         titleTextView.setText(context.getString(R.string.choose_list));
+        titleTextView.setTextColor(context.getColor(R.color.white)); // Cor do título
 
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setCustomTitle(titleView)
-                .setMultiChoiceItems(options, selectedItems, (dialogInterface, which, isChecked) -> {
+                .setMultiChoiceItems(availableLists.toArray(new String[0]), selectedItems, (dialogInterface, which, isChecked) -> {
                     selectedItems[which] = isChecked;
                 })
                 .setPositiveButton(context.getString(R.string.confirm), (dialogInterface, which) -> {
-                    List<String> selectedLists = new ArrayList<>();
-
-                    if (selectedItems[0]) selectedLists.add("watchlist");
-                    if (selectedItems[1]) selectedLists.add("visto");
-                    if (selectedItems[2]) selectedLists.add("favorito");
-
-                    for (String listType : selectedLists) {
-                        getUserList(listType, media); // Passando a mídia como parâmetro
+                    for (int i = 0; i < availableLists.size(); i++) {
+                        if (selectedItems[i]) {
+                            String selectedList = availableLists.get(i);
+                            getUserList(selectedList, media);  // Busca a lista do usuário
+                        }
                     }
                 })
                 .setNegativeButton(context.getString(R.string.cancel), (dialogInterface, which) -> dialogInterface.dismiss())
@@ -180,23 +243,28 @@ public class SeriesDetailsFragment extends Fragment {
                 for (int i = 0; i < listView.getChildCount(); i++) {
                     TextView item = (TextView) listView.getChildAt(i);
                     if (item != null) {
-                        item.setTextColor(context.getColor(R.color.white));
+                        item.setTextColor(context.getColor(R.color.white)); // Cor dos itens da lista
                     }
                 }
             }
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(context.getColor(R.color.white));
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(context.getColor(R.color.white));
         });
 
         dialog.show();
-        dialog.getWindow().setBackgroundDrawableResource(R.color.app_background);
+        dialog.getWindow().setBackgroundDrawableResource(R.color.app_background); // Cor de fundo
     }
     public void getUserList(String listType, Media media) {
+        if(listType.equals("Para Ver")){
+            listType = "watchlist";
+        }
         userListRepository.getByListType(listType, user.getId()).enqueue(new Callback<ApiResponse<UserList>>() {
             @Override
             public void onResponse(Call<ApiResponse<UserList>> call, Response<ApiResponse<UserList>> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
                     UserList userList = response.body().getData();
-                    getListMedia(userList, media);
+                    //getListMedia(userList, media);
+                    createNewListMedia(userList, media);
                 } else {
                     Log.e("API_ERROR", "Erro ao carregar listas: " + response.message());
                 }
@@ -205,33 +273,6 @@ public class SeriesDetailsFragment extends Fragment {
             @Override
             public void onFailure(Call<ApiResponse<UserList>> call, Throwable t) {
                 Log.e("API_ERROR", "Falha na requisição: " + t.getMessage());
-            }
-        });
-    }
-    public void getListMedia(UserList userList, Media media) {
-        listMediaRepository.getByUserListId(userList.getId()).enqueue(new Callback<ApiResponse<List<ListMedia>>>() {
-            @Override
-            public void onResponse(Call<ApiResponse<List<ListMedia>>> call, Response<ApiResponse<List<ListMedia>>> response) {
-
-                boolean isInList = false;
-                if(response.body() != null){
-                    List<ListMedia> mediaList = response.body().getData();
-                    for (ListMedia listMedia : mediaList) {
-                        if (listMedia.getIdMedia().intValue() == media.getId().intValue()) {
-                            isInList = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (!isInList) {
-                    createNewListMedia(userList, media);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ApiResponse<List<ListMedia>>> call, Throwable t) {
-                Log.e("API_ERROR", "Falha ao carregar mídias: " + t.getMessage());
             }
         });
     }
@@ -260,7 +301,8 @@ public class SeriesDetailsFragment extends Fragment {
     }
 
 
-private void setupTabSwitching() {
+
+    private void setupTabSwitching() {
         tabSobre.setOnClickListener(v -> {
             tabSobre.setBackgroundResource(R.color.app_background);
             tabEpisodios.setBackgroundResource(R.color.app_background);
