@@ -88,4 +88,8 @@
     <string name="watching">A Ver</string>
     <string name="watched">Vistos</string>
     <string name="show_more">Mostrar Mais</string>
+
+    <string name="choose_list">Escolha a lista a que pretende adicionar:</string>
+    <string name="confirm">Confirmar</string>
+    <string name="favorites">Favorito</string>
 </resources>

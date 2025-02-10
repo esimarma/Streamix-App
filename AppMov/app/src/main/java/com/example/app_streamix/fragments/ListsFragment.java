@@ -12,6 +12,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -72,7 +73,7 @@ public class ListsFragment extends Fragment {
 
         // Inicializa RecyclerView
         listRecycler = view.findViewById(R.id.listRecycler);
-        listRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        listRecycler.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
         // Inicializa botões
         watchlistButton = view.findViewById(R.id.watchlistButton);
@@ -110,7 +111,7 @@ public class ListsFragment extends Fragment {
 
     private void clearRecyclerView() {
         mediaList.getResults().clear();
-        itemAdapter = new ItemAdapter(mediaList, mediaRepository); // Recria o adapter
+        itemAdapter = new ItemAdapter(mediaList, mediaRepository, true, 0); // Recria o adapter
         listRecycler.setAdapter(itemAdapter);
     }
 
@@ -143,7 +144,7 @@ public class ListsFragment extends Fragment {
                                 AtomicInteger completedRequests = new AtomicInteger(0); // Contador de requisições concluídas
 
                                 for (ListMedia listMedia : mediaItems) {
-                                    fetchMediaDetails(listMedia.getIdMedia(), listMedia.getMediaType(), totalItems, completedRequests);
+                                    fetchMediaDetails(listMedia.getId() ,listMedia.getIdMedia(), listMedia.getMediaType(), totalItems, completedRequests);
                                 }
                             } else {
                                 Toast.makeText(getContext(), "Erro ao carregar listas", Toast.LENGTH_SHORT).show();
@@ -168,40 +169,32 @@ public class ListsFragment extends Fragment {
         });
     }
 
-    private void fetchMediaDetails(int mediaId, String mediaType, int totalItems, AtomicInteger completedRequests) {
+    private void fetchMediaDetails(long listMediaId ,int mediaId, String mediaType, int totalItems, AtomicInteger completedRequests) {
         mediaRepository.getMediaById(mediaId, mediaType).enqueue(new Callback<Media>() {
             @Override
             public void onResponse(Call<Media> call, Response<Media> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     mediaList.getResults().add(response.body()); // Adiciona à lista
                 }
-                checkIfAllRequestsCompleted(totalItems, completedRequests.incrementAndGet());
+                checkIfAllRequestsCompleted(listMediaId,totalItems, completedRequests.incrementAndGet());
             }
 
             @Override
             public void onFailure(Call<Media> call, Throwable t) {
-                checkIfAllRequestsCompleted(totalItems, completedRequests.incrementAndGet());
+                checkIfAllRequestsCompleted(listMediaId, totalItems, completedRequests.incrementAndGet());
             }
         });
     }
 
-    private void checkIfAllRequestsCompleted(int totalItems, int completedRequests) {
+    private void checkIfAllRequestsCompleted(long listMediaId, int totalItems, int completedRequests) {
         if (completedRequests == totalItems) {
             if (mediaList.getResults() != null && !mediaList.getResults().isEmpty()) {
-                itemAdapter = new ItemAdapter(mediaList, mediaRepository);
+                itemAdapter = new ItemAdapter(mediaList, mediaRepository, true, listMediaId);
                 listRecycler.setAdapter(itemAdapter);
             } else {
-                listRecycler.setAdapter(new ItemAdapter(new MediaResponse(), mediaRepository)); // Garante que a lista fique vazia sem erro
+                listRecycler.setAdapter(new ItemAdapter(new MediaResponse(), mediaRepository,true, listMediaId)); // Garante que a lista fique vazia sem erro
                 Log.e("ListsFragment", "Nenhuma mídia encontrada.");
             }
         }
-    }
-
-    private void updateRecyclerView(Media media) {
-        if (itemAdapter == null) {
-            itemAdapter = new ItemAdapter(new MediaResponse(), mediaRepository);
-            listRecycler.setAdapter(itemAdapter);
-        }
-        itemAdapter.addItem(media);
     }
 }

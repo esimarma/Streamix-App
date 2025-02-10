@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<MediaResponse> call, Response<MediaResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    popularMoviesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository));
+                    popularMoviesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository,false, 0));
                 }
             }
 
@@ -110,7 +110,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<MediaResponse> call, Response<MediaResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    popularSeriesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository));
+                    popularSeriesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository,false, 0));
                 }
             }
 
@@ -124,7 +124,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<MediaResponse> call, Response<MediaResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    topRatedMoviesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository));
+                    topRatedMoviesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository, false, 0));
                 }
             }
 
@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<MediaResponse> call, Response<MediaResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    topRatedSeriesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository));
+                    topRatedSeriesRecycler.setAdapter(new ItemAdapter(response.body(), mediaRepository,false, 0));
                 }
             }
 
