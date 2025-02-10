@@ -70,7 +70,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     holder.itemDetails.setText(releaseDate + " • " + mediaResponse.getVoteAverage() + "/10");
                     holder.itemDescription.setText(mediaResponse.getOverview());
 
-                    // ADD CLICK LISTENER HERE
+                    // ADD CLICK LISTENER
                     holder.itemView.setOnClickListener(v -> {
                         FragmentActivity activity = (FragmentActivity) holder.itemView.getContext();
                         if (mediaType.equals("movie")) {
