@@ -119,9 +119,11 @@
             app:layout_constraintTop_toBottomOf="@id/divider"
             android:layout_marginTop="12dp"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/statisticsTitle"
             android:layout_marginTop="12dp">
 
@@ -129,21 +131,20 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/statMovies"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
-                app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="#6A1B9A"
-                android:layout_margin="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/statSeries"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#8C64A8"
+                android:layout_margin="6dp">
 
                 <TextView
+                    android:id="@+id/countMovies"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="X Filmes"
                     android:textColor="#FFFFFF"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"/>
             </androidx.cardview.widget.CardView>
 
@@ -151,21 +152,20 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/statSeries"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
-                app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="#6A1B9A"
-                android:layout_margin="8dp"
-                app:layout_constraintStart_toEndOf="@id/statMovies"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#8C64A8"
+                android:layout_margin="6dp">
 
                 <TextView
+                    android:id="@+id/countSeries"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="X Séries"
                     android:textColor="#FFFFFF"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"/>
             </androidx.cardview.widget.CardView>
 
@@ -173,14 +173,11 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/statHours"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
-                app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="#6A1B9A"
-                android:layout_margin="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/statMovies"
-                app:layout_constraintEnd_toStartOf="@id/statHours2">
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#8C64A8"
+                android:layout_margin="6dp">
 
                 <TextView
                     android:id="@+id/moviesHoursText"
@@ -189,24 +186,10 @@
                     android:gravity="center"
                     android:text="X Horas"
                     android:textColor="#FFFFFF"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"/>
             </androidx.cardview.widget.CardView>
-
-            <!-- Invisible Placeholder (To Ensure Equal Sizing) -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/statHours2"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="#6A1B9A"
-                android:layout_margin="8dp"
-                app:layout_constraintStart_toEndOf="@id/statHours"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/statSeries"
-                android:visibility="invisible"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
