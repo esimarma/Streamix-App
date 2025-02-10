@@ -31,7 +31,7 @@ Our project is focused on the mobile application and the API created to power it
 ### Functionalities
 
 - Laravel based API 
-- API powered by 2 APIs deveeloped in Android Studio with Java
+- APP powered by 2 APIs deveeloped in Android Studio with Java
 - Website to manage the API and the users information
 
 
@@ -43,6 +43,10 @@ Our project is focused on the mobile application and the API created to power it
 
 
 ### Project Structure
+
+- Create the screens in Adobe XD
+
+- Create the Database for the API
 
 - Create the structure of the Main Activity to use fragment navigation
   - Set up BottomNavigationView for navigation
@@ -109,9 +113,23 @@ Our project is focused on the mobile application and the API created to power it
   - Connect the app to the Laravel API using Retrofit.
 
 
+
+<!-- Screens Prototype  -->
+### Prototype drawings of the Screens
+The following image shows the drawings of the screens, made in Adobe XD. These were an early version of the screens.
+<div align="center">
+    <img src="prototype/Ecrãs/Ecrãs 2 fundo branco.png" alt="Logo" width="700" height="auto"> 
+</div>
+
+
+
 <!-- Database Structure -->
 ### Database Structure for the API
 
+The following image shows the schema of the database on which our API is based. The database was designed by us using MySQL.
+<div align="center">
+    <img src="prototype/database_schema.png" alt="Logo" width="700" height="auto"> 
+</div>
 
 
 
@@ -310,7 +328,96 @@ Description                                   |
 #### **Media in Lists**
 
 
-<!-- Falta fazer -->
+#### Get All Media in Lists
+
+
+```
+   GET /api/listMedia
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Retrieves all media items stored in user lists. |
+
+
+
+#### Add Media to a List
+
+
+```
+   POST /api/listMedia
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Adds a new media item to a user list. |
+
+
+
+#### Get Media by ID
+
+
+```
+   GET /api/listMedia/{id}
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Retrieves specific media details from a user list. |
+
+
+
+#### Get Media in a User List
+
+
+```
+   GET /api/list-media/userList/{user_list_id}
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Fetches all media items belonging to a specified user list. |
+
+
+
+#### Update Media in List
+
+
+```
+   PUT /api/listMedia/{id}
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Updates the media entry in a specific user list. |
+
+
+
+
+#### Remove Media from List
+
+
+```
+   DELETE /api/listMedia/{id}
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Deletes a media item from a user list. |
+
+
 
 
 #### **Ratings**
@@ -384,6 +491,105 @@ Updates an existing rating for a media item. |
 Description                                   |
 :------------------------------------------ |
 Removes a rating from the system. |
+
+
+### TMDB  API
+
+####  Get Movie Details
+
+```
+   GET /api/movie/{id}
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Retrieves details of a specific movie. |
+
+
+
+####  Get Popular Movies
+
+```
+   GET /api/movie/popular
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Fetches a list of currently trending movies. |
+
+
+
+####   Get Top-Rated Movies
+
+```
+   GET /api/movie/top_rated
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Retrieves a list of the highest-rated movies. |
+
+
+####   Get TV Show Details
+
+```
+   GET /api/tv/{id}
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+ Fetches information about a specific TV show. |
+
+
+####   Get Popular TV Shows
+
+```
+   GET /api/tv/popular
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Retrieves a list of trending TV shows. |
+
+
+####   Get Top-Rated TV Shows
+
+```
+   GET /api/tv/top_rated
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Fetches a list of the highest-rated TV shows. |
+
+
+
+####   Search for Media
+
+```
+   GET /api/search/{media_type}
+
+```
+
+
+Description                                   |
+:------------------------------------------ |
+Searches for movies or TV shows based on the specified media type. |
+
+
+
 
 
 
